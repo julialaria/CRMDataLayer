@@ -11,10 +11,10 @@ public class Lead {
     private String email;
     private String companyName;
     private static int leadIdCounter = 1;
-    private SalesRep salesrep;
+    private SalesRep salesRep;
 
     // When instantiating a Lead Object, it is automatically added to the List leadList.
-    public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesrep) {
+    public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
         this.id = Lead.leadIdCounter++;
         this.name = name;
         if (isPhoneNumberValid(phoneNumber)){
@@ -24,7 +24,7 @@ public class Lead {
             this.email = email;
         }
         this.companyName = companyName;
-        this.salesrep = salesrep;
+        this.salesRep = salesRep;
     }
 
     public static boolean isEmailValid(String email){
@@ -50,15 +50,6 @@ public class Lead {
         return result;
     }
 
-    public void printInfo(){
-        System.out.println("Lead with id= " + id +
-                ",with name " + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                " and companyName='" + companyName + '\'' +
-                '}');
-
-    }
 
     public int getId() {
         return id;
@@ -78,6 +69,14 @@ public class Lead {
 
     public String getCompanyName() {
         return companyName;
+    }
+
+    public SalesRep getSalesRep() {
+        return salesRep;
+    }
+
+    public void setSalesRep(SalesRep salesRep) {
+        this.salesRep = salesRep;
     }
 
     @Override

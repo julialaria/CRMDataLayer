@@ -1,14 +1,12 @@
 package com.ironhack.CRMDateLayer.model;
 
 public class SalesRep {
-
+    private static Integer id;
     private String name;
-    private Integer id;
 
-
-    public SalesRep(String name, Integer id) {
+    public SalesRep(String name) {
         this.name = name;
-        this.id = id;
+        id++;
     }
 
 

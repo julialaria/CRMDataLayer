@@ -11,15 +11,15 @@ public class Opportunity {
     int quantity;
     Contact decisionMaker;
     Status status;
-    private SalesRep salesrep;
+    private SalesRep salesRep;
 
-    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesrep) {
+    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep) {
 
         this.product = product;
         this.quantity = quantity;
         this.decisionMaker = decisionMaker;
         this.status = Status.OPEN;
-        this.salesrep = salesrep;
+        this.salesRep = salesRep;
         id++;
     }
 
@@ -67,5 +67,13 @@ public class Opportunity {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public SalesRep getSalesRep() {
+        return salesRep;
+    }
+
+    public void setSalesRep(SalesRep salesRep) {
+        this.salesRep = salesRep;
     }
 }

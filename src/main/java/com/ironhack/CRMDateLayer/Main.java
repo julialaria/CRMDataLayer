@@ -19,6 +19,7 @@ public class Main {
         Map<Integer, Contact> contacts = new HashMap<>();
         Map<Integer, Opportunity> opportunities = new HashMap<>();
         Map<Integer, Account> accounts = new HashMap<>();
+        Map <Integer,SalesRep> salesRep =new HashMap<>();
 
         while (!order.toUpperCase().equals("EXIT")) {
             if (orderSplit.length > 1) {

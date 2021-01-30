@@ -13,8 +13,9 @@ public class CreateOpportunity {
         Scanner scan = new Scanner(System.in);
         Product typeTruck = enterCorrectType(scan);
         int trucksNum = getTruckNumber(scan);
+        SalesRep salesRep = contact.salesRep;
 
-        return new Opportunity(typeTruck, trucksNum, contact);
+        return new Opportunity(typeTruck, trucksNum, contact, salesRep);
     }
 
     public static int getTruckNumber(Scanner scanner) {
