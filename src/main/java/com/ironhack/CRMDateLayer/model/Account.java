@@ -3,19 +3,27 @@ package com.ironhack.CRMDateLayer.model;
 import com.ironhack.CRMDateLayer.enums.Industry;
 
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Account {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private static int ID_COUNTER = 1;
+    private int id;
+    @Enumerated(EnumType.STRING)
+    private Industry industry;
+    private int employeeCount;
+    private String city;
+    private String country;
+    private List<Contact> contactList;
+    private List<Opportunity> opportunityList;
 
-    private final int id;
-    private final Industry industry;
-    private final int employeeCount;
-    private final String city;
-    private final String country;
-    private final List<Contact> contactList;
-    private final List<Opportunity> opportunityList;
+    public Account(){
+
+    }
 
     public Account(Industry industry, int employeeCount, String city, String country, List<Contact> contactList, List<Opportunity> opportunityList) {
         this.id = ID_COUNTER++;

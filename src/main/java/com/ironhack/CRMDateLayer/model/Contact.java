@@ -1,11 +1,20 @@
 package com.ironhack.CRMDateLayer.model;
 
+import javax.persistence.*;
+
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Contact extends Lead {
 
-    private int idContact;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    private int idContact;
     private static int idCounter = 1;
     private Lead lead;
     SalesRep salesRep;
+
+    public Contact(){
+
+    }
 
     public Contact(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
         super(name, phoneNumber, email, companyName, salesRep);

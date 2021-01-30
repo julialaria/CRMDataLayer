@@ -10,21 +10,21 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
-        System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\" ");
+        System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"NEW SALESREP\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\" ");
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
 
-        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS", "CLOSE-LOST", "CLOSE-WON"};
+        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS", "CLOSE-LOST", "CLOSE-WON", "NEW SALESREP"};
         Map<Integer, Lead> leads = new HashMap<>();
         Map<Integer, Contact> contacts = new HashMap<>();
         Map<Integer, Opportunity> opportunities = new HashMap<>();
         Map<Integer, Account> accounts = new HashMap<>();
-        Map <Integer,SalesRep> salesRep =new HashMap<>();
+        Map <Integer,SalesRep> salesReps =new HashMap<>();
 
         while (!order.toUpperCase().equals("EXIT")) {
             if (orderSplit.length > 1) {
                 if ((order.toUpperCase().equals(keyPhrases[0]))) {
-                    Lead lead = MainMethods.newLead();
+                    Lead lead = MainMethods.newLead(salesReps);
                     leads.put(lead.getId(), lead);
                 } else if (orderSplit[0].toUpperCase().equals(keyPhrases[1])) {
                     try {

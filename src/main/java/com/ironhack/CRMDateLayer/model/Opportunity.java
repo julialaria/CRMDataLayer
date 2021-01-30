@@ -2,16 +2,25 @@ package com.ironhack.CRMDateLayer.model;
 import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.enums.Status;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Opportunity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private static int id;
+    @Enumerated(EnumType.STRING)
     Product product;
     int quantity;
     Contact decisionMaker;
+    @Enumerated(EnumType.STRING)
     Status status;
     private SalesRep salesRep;
+
+    public Opportunity(){
+
+    }
 
     public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep) {
 

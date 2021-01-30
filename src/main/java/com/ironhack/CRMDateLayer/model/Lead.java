@@ -4,7 +4,13 @@ package com.ironhack.CRMDateLayer.model;
 import org.apache.commons.validator.routines.EmailValidator;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lead {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String phoneNumber;
@@ -12,6 +18,10 @@ public class Lead {
     private String companyName;
     private static int leadIdCounter = 1;
     private SalesRep salesRep;
+
+    public Lead(){
+
+    }
 
     // When instantiating a Lead Object, it is automatically added to the List leadList.
     public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
