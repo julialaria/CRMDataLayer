@@ -9,13 +9,18 @@ import java.util.Objects;
 public class Opportunity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private static int id;
+    private int id;
+    private static int ID_COUNTER = 1;
     @Enumerated(EnumType.STRING)
     Product product;
-    int quantity;
+    private int quantity;
+    @OneToOne
+    @JoinColumn(name = "contact_id")
     Contact decisionMaker;
     @Enumerated(EnumType.STRING)
     Status status;
+    @OneToOne
+    @JoinColumn(name = "salesRep_id")
     private SalesRep salesRep;
 
     public Opportunity(){
@@ -29,7 +34,7 @@ public class Opportunity {
         this.decisionMaker = decisionMaker;
         this.status = Status.OPEN;
         this.salesRep = salesRep;
-        id++;
+        this.id = ID_COUNTER++;
     }
 
     @Override
@@ -54,7 +59,7 @@ public class Opportunity {
         return Objects.hash(getProduct(), getQuantity(), getDecisionMaker(), getStatus());
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 

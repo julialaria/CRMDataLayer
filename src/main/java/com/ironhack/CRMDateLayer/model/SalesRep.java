@@ -1,16 +1,15 @@
 package com.ironhack.CRMDateLayer.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class SalesRep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private static Integer id;
+    private Integer id;
+    private static int ID_COUNTER = 1;
     private String name;
+
 
     public SalesRep(){
 

@@ -8,17 +8,20 @@ import java.util.List;
 
 @Entity
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private static int ID_COUNTER = 1;
     private int id;
+    private static int ID_COUNTER = 1;
     @Enumerated(EnumType.STRING)
     private Industry industry;
     private int employeeCount;
     private String city;
     private String country;
+    @OneToMany
+    @JoinColumn(name = "contact_id")
     private List<Contact> contactList;
+    @OneToMany
+    @JoinColumn(name = "opportunity_id")
     private List<Opportunity> opportunityList;
 
     public Account(){

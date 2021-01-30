@@ -6,9 +6,10 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "id")
 public class Contact extends Lead {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    private int idContact;
+    private int idContact;
     private static int idCounter = 1;
+    @OneToOne
+    @JoinColumn(name = "lead_id")
     private Lead lead;
     SalesRep salesRep;
 
