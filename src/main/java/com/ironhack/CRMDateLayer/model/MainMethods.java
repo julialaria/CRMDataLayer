@@ -18,6 +18,7 @@ public class MainMethods {
         String nameLead="";
         String phoneNumber;
         String email;
+        SalesRep salesRep = null;
         boolean isValid = false;
 
         while(!isValid){
@@ -55,7 +56,7 @@ public class MainMethods {
 
         System.out.println(ConsoleColors.BLUE+"Introduce company name of the Lead");
         String companyName = scan.nextLine();
-        Lead lead = new Lead(nameLead, phoneNumber, email, companyName);
+        Lead lead = new Lead(nameLead, phoneNumber, email, companyName, salesRep);
         return lead;
     }
 
@@ -65,8 +66,9 @@ public class MainMethods {
         String phoneNumber = leads.get(idLead).getPhoneNumber();
         String email = leads.get(idLead).getEmail();
         String companyName = leads.get(idLead).getCompanyName();
+        SalesRep salesRep = leads.get(idLead).getSalesrep();
 
-        Contact contact = new Contact(name, phoneNumber, email, companyName);
+        Contact contact = new Contact(name, phoneNumber, email, companyName, salesRep);
         return contact;
     }
 

@@ -2,10 +2,17 @@ package com.ironhack.CRMDateLayer.model;
 import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.enums.Status;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Opportunity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private static int id;
     Product product;
     int quantity;
@@ -43,6 +50,14 @@ public class Opportunity {
     @Override
     public int hashCode() {
         return Objects.hash(getProduct(), getQuantity(), getDecisionMaker(), getStatus());
+    }
+
+    public SalesRep getSalesrep() {
+        return salesrep;
+    }
+
+    public void setSalesrep(SalesRep salesrep) {
+        this.salesrep = salesrep;
     }
 
     public static int getId() {

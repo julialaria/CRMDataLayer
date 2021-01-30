@@ -8,6 +8,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        SalesRep julia = new SalesRep("Julia", 1);
+        SalesRep pepe = new SalesRep("Pepe", 2);
+        SalesRep margarita = new SalesRep("Margarita", 3);
+
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
         System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\" ");

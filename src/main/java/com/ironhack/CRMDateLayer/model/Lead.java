@@ -1,10 +1,13 @@
 package com.ironhack.CRMDateLayer.model;
-
-
 import org.apache.commons.validator.routines.EmailValidator;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lead {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String phoneNumber;
@@ -58,6 +61,14 @@ public class Lead {
                 " and companyName='" + companyName + '\'' +
                 '}');
 
+    }
+
+    public SalesRep getSalesrep() {
+        return salesrep;
+    }
+
+    public void setSalesrep(SalesRep salesrep) {
+        this.salesrep = salesrep;
     }
 
     public int getId() {

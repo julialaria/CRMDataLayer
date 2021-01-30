@@ -3,7 +3,6 @@ import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
-
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,8 +12,9 @@ public class CreateOpportunity {
         Scanner scan = new Scanner(System.in);
         Product typeTruck = enterCorrectType(scan);
         int trucksNum = getTruckNumber(scan);
+        SalesRep salesRep = contact.getSalesrep();
 
-        return new Opportunity(typeTruck, trucksNum, contact);
+        return new Opportunity(typeTruck, trucksNum, contact, salesRep);
     }
 
     public static int getTruckNumber(Scanner scanner) {
