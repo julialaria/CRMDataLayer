@@ -134,7 +134,7 @@ public class MainMethods {
         }
     }
 
-    public static SalesRep newSalesRep(){
+    public static void newSalesRep(Map<Integer, SalesRep> salesReps){
 
         Scanner scan = new Scanner(System.in);
         String name="";
@@ -150,10 +150,13 @@ public class MainMethods {
         }
 
         SalesRep salesRep = new SalesRep(name);
-        return salesRep;
+        salesReps.put(salesRep.getId(), salesRep);
+        System.out.println(salesRep.getId());
+        System.out.println(salesRep.getName());
+
     }
 
-    public static void showSalesReps(Map<Integer, SalesRep> salesReps){
+    public static void showSalesReps(Map<Integer, SalesRep> salesReps){   //Esto dejará de dar error al imprimir cuando se cree la base de datos
         System.out.println("LEAD ID || LEAD NAME");
         for (int idSalesRep : salesReps.keySet()){
             System.out.println(salesReps.get(idSalesRep).shortPrint());

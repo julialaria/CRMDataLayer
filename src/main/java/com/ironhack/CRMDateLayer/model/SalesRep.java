@@ -7,9 +7,7 @@ public class SalesRep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private static int ID_COUNTER = 1;
     private String name;
-
 
     public SalesRep(){
 
@@ -17,7 +15,6 @@ public class SalesRep {
 
     public SalesRep(String name) {
         this.name = name;
-        id++;
     }
 
 
@@ -38,6 +35,6 @@ public class SalesRep {
     }
 
     public String shortPrint() {
-        return id + " || " + name;
+        return this.id + " || " + this.name;
     }
 }

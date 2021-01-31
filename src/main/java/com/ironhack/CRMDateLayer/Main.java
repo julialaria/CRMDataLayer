@@ -24,12 +24,12 @@ public class Main {
         Map<Integer, Contact> contacts = new HashMap<>();
         Map<Integer, Opportunity> opportunities = new HashMap<>();
         Map<Integer, Account> accounts = new HashMap<>();
-        Map<Integer, SalesRep> salesReps = new HashMap<>();
+        Map<Integer, SalesRep> salesRepMap = new HashMap<>();
 
         while (!order.equalsIgnoreCase("EXIT")) {
             if (orderSplit.length > 1) {
                 if ((order.toUpperCase().equals(keyPhrases[0]))) {
-                    Lead lead = MainMethods.newLead(salesReps);
+                    Lead lead = MainMethods.newLead(salesRepMap);
                     leads.put(lead.getId(), lead);
                 } else if (orderSplit[0].toUpperCase().equals(keyPhrases[1])) {
                     try {
@@ -63,11 +63,10 @@ public class Main {
                     MainMethods.closeWon(orderSplit, opportunities);
                 } else if (order.toUpperCase().equals(keyPhrases[7])) {
 
-                    SalesRep salesRep = MainMethods.newSalesRep();
-                    salesReps.put(salesRep.getId(), salesRep);
+                    MainMethods.newSalesRep(salesRepMap);
 
                 } else if (order.toUpperCase().equals(keyPhrases[8])) {
-                    MainMethods.showSalesReps(salesReps);
+                    MainMethods.showSalesReps(salesRepMap);
 
                 } else {
                     System.out.println(ConsoleColors.RED + "COMAND NOT FOUND");
