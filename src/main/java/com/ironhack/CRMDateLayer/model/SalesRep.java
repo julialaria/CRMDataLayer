@@ -36,4 +36,8 @@ public class SalesRep {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String shortPrint() {
+        return id + " || " + name;
+    }
 }

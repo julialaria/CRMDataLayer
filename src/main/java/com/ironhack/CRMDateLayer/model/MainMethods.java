@@ -7,65 +7,28 @@ import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class MainMethods {
 
-    public static SalesRep newSalesRep(){
-        Scanner scan = new Scanner(System.in);
-        String nameSalesRep="";
-        boolean isValid = false;
-
-        while(!isValid){
-            System.out.println(ConsoleColors.BLUE+"Please specify the name of the Sales Representative");
-            nameSalesRep = scan.nextLine();
-            isValid = nameSalesRep.matches("[a-zA-Z]+");
-            if(!isValid){
-                System.out.println(ConsoleColors.RED+"The name of the Sales Representative is not valid. Can contain only letters");
-            }
-        }
-
-        SalesRep salesRep = new SalesRep(nameSalesRep);
-        return salesRep;
-
-    }
-
-    public static Lead newLead(Map <Integer,SalesRep> salesReps){
+    public static Lead newLead(Map<Integer, SalesRep> salesReps){
 
         Scanner scan = new Scanner(System.in);
         String nameLead="";
         String phoneNumber;
         String email;
-        Integer id;
-        boolean isValid = false;
+        int idNum;
+        String idSalesRep;
         SalesRep salesRep = null;
-        
-        while(!isValid){
-
-            System.out.println(ConsoleColors.BLUE+"Please specify the id of the Sales Representative");
-            id=Integer.parseInt(scan.nextLine());
-
-            if (salesReps.containsKey(id)){
-
-                salesRep = salesReps.get(id);
-                isValid = true;
-            }else {
-
-                System.out.println(ConsoleColors.RED+ "The id of the Sales Representative is not valid");
-            }
-
-        }
-
-        isValid= false;
+        boolean isValid = false;
 
         while(!isValid){
-            System.out.println(ConsoleColors.BLUE+"Please specify the name of the Lead");
+            System.out.println(ConsoleColors.BLUE+"Please specify the name of the lead");
             nameLead = scan.nextLine();
             isValid = nameLead.matches("[a-zA-Z]+");
             if(!isValid){
-                System.out.println(ConsoleColors.RED+"The name of the Lead is not valid. Can contain only letters");
+                System.out.println(ConsoleColors.RED+"The name of the lead is not valid. Can contain only letters");
             }
         }
 
@@ -90,12 +53,26 @@ public class MainMethods {
             }catch (IllegalArgumentException e){
                 System.err.println(ConsoleColors.RED +"Introduce a valid email address");
             }
+
         }
 
-        System.out.println(ConsoleColors.BLUE+"Introduce the Company name of the Lead");
-        String companyName = scan.nextLine();
+        while(true){
+            System.out.println(ConsoleColors.BLUE+"Introduce id of the SalesRep");
+            idSalesRep = scan.nextLine();
+            try{
+                idNum = Integer.parseInt(idSalesRep);
+                if(salesReps.containsKey(idNum)){
+                    break;
+                }
+            }catch (IllegalArgumentException e){
+                System.err.println(ConsoleColors.RED +"Introduce a valid id SalesRep");
+            }
 
-        Lead lead = new Lead(nameLead, phoneNumber, email, companyName, salesRep);
+        }
+
+        System.out.println(ConsoleColors.BLUE+"Introduce company name of the Lead");
+        String companyName = scan.nextLine();
+        Lead lead = new Lead(nameLead, phoneNumber, email, companyName, salesReps.get(idNum));
         return lead;
     }
 
@@ -165,5 +142,31 @@ public class MainMethods {
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
         return order;
+    }
+
+    public static SalesRep newSalesRep(){
+
+        Scanner scan = new Scanner(System.in);
+        String name="";
+        boolean isValid = false;
+
+        while(!isValid){
+            System.out.println(ConsoleColors.BLUE+"Please specify the name of the lead");
+            name = scan.nextLine();
+            isValid = name.matches("[a-zA-Z]+");
+            if(!isValid){
+                System.out.println(ConsoleColors.RED+"The name of the lead is not valid. Can contain only letters");
+            }
+        }
+
+        SalesRep salesRep = new SalesRep(name);
+        return salesRep;
+    }
+
+    public static void showSalesReps(Map<Integer, SalesRep> salesReps){
+        System.out.println("LEAD ID || LEAD NAME");
+        for (int idSalesRep : salesReps.keySet()){
+            System.out.println(salesReps.get(idSalesRep).shortPrint());
+        }
     }
 }

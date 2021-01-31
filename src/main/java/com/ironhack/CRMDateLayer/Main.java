@@ -8,18 +8,23 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        SalesRep julia = new SalesRep("Julia");
+        SalesRep pepe = new SalesRep("Pepe");
+        SalesRep margarita = new SalesRep("Margarita");
+
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
-        System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"NEW SALESREP\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\" ");
+        System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\" ");
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
 
-        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS", "CLOSE-LOST", "CLOSE-WON", "NEW SALESREP"};
+        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS", "CLOSE-LOST", "CLOSE-WON", "NEW SALESREP", "SHOW SALESREPS"};
         Map<Integer, Lead> leads = new HashMap<>();
         Map<Integer, Contact> contacts = new HashMap<>();
         Map<Integer, Opportunity> opportunities = new HashMap<>();
         Map<Integer, Account> accounts = new HashMap<>();
-        Map <Integer,SalesRep> salesReps =new HashMap<>();
+        Map<Integer, SalesRep> salesReps = new HashMap<>();
 
         while (!order.toUpperCase().equals("EXIT")) {
             if (orderSplit.length > 1) {
@@ -56,6 +61,14 @@ public class Main {
                     MainMethods.closeLost(orderSplit, opportunities);
                 } else if (orderSplit[0].toUpperCase().equals(keyPhrases[6])) {
                     MainMethods.closeWon(orderSplit, opportunities);
+                } else if (order.toUpperCase().equals(keyPhrases[7])) {
+
+                    SalesRep salesRep = MainMethods.newSalesRep();
+                    salesReps.put(salesRep.getId(), salesRep);
+
+                } else if (order.toUpperCase().equals(keyPhrases[8])) {
+                    MainMethods.showSalesReps(salesReps);
+
                 } else {
                     System.out.println(ConsoleColors.RED + "COMAND NOT FOUND");
                 }
