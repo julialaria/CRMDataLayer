@@ -11,9 +11,16 @@ public class Contact extends Lead {
     @OneToOne
     @JoinColumn(name = "lead_id")
     private Lead lead;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+
     SalesRep salesRep;
 
-    public Contact(){
+
+    public Contact() {
 
     }
 
@@ -46,7 +53,7 @@ public class Contact extends Lead {
     @Override
     public String toString() {
         return "Contact with id" + idContact +
-                ", corresponds to lead: " + lead ;
+                ", corresponds to lead: " + lead;
     }
 
 }

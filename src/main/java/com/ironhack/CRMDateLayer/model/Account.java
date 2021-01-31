@@ -17,11 +17,9 @@ public class Account {
     private int employeeCount;
     private String city;
     private String country;
-    @OneToMany
-    @JoinColumn(name = "contact_id")
+    @OneToMany(mappedBy = "account")
     private List<Contact> contactList;
-    @OneToMany
-    @JoinColumn(name = "opportunity_id")
+    @OneToMany(mappedBy = "account")
     private List<Opportunity> opportunityList;
 
     public Account(){

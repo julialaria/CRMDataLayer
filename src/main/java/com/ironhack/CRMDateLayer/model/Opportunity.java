@@ -14,6 +14,9 @@ public class Opportunity {
     @Enumerated(EnumType.STRING)
     Product product;
     private int quantity;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
     @OneToOne
     @JoinColumn(name = "contact_id")
     Contact decisionMaker;
