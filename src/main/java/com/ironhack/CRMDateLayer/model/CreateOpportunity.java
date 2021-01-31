@@ -9,11 +9,10 @@ import java.util.Scanner;
 
 public class CreateOpportunity {
 
-    public static Opportunity create(Contact contact) {
+    public static Opportunity create(Contact contact, SalesRep salesRep) {
         Scanner scan = new Scanner(System.in);
         Product typeTruck = enterCorrectType(scan);
         int trucksNum = getTruckNumber(scan);
-        SalesRep salesRep = contact.salesRep;
 
         return new Opportunity(typeTruck, trucksNum, contact, salesRep);
     }

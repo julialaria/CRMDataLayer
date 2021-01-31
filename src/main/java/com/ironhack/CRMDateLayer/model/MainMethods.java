@@ -85,9 +85,8 @@ public class MainMethods {
         String phoneNumber = leads.get(idLead).getPhoneNumber();
         String email = leads.get(idLead).getEmail();
         String companyName = leads.get(idLead).getCompanyName();
-        SalesRep salesRep = leads.get(idLead).getSalesRep();
 
-        Contact contact = new Contact(name, phoneNumber, email, companyName, salesRep);
+        Contact contact = new Contact(name, phoneNumber, email, companyName);
         return contact;
     }
 

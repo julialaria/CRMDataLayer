@@ -22,8 +22,8 @@ public class Opportunity {
     Contact decisionMaker;
     @Enumerated(EnumType.STRING)
     Status status;
-    @OneToOne
-    @JoinColumn(name = "salesRep_id")
+    @ManyToOne
+    @JoinColumn(name = "salesrep_id")
     private SalesRep salesRep;
 
     public Opportunity(){

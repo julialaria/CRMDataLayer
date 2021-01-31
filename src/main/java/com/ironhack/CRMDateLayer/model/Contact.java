@@ -3,59 +3,86 @@ package com.ironhack.CRMDateLayer.model;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
-public class Contact extends Lead {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContact;
     //private static int idCounter = 1;
-    @OneToOne
-    @JoinColumn(name = "lead_id")
-    private Lead lead;
+
+    private String name;
+    private String phoneNumber;
+    private String email;
+    private String companyName;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-
-    SalesRep salesRep;
-
-
     public Contact() {
 
     }
 
-    public Contact(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
-        super(name, phoneNumber, email, companyName, salesRep);
-        this.idContact = idContact;
-        this.lead = lead;
-        //idContact++;
-        this.salesRep = salesRep;
+    public Contact(String name, String phoneNumber, String email, String companyName, Account account) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.companyName = companyName;
+        this.account = account;
+    }
+
+    public Contact(String name, String phoneNumber, String email, String companyName) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.companyName = companyName;
     }
 
     public int getIdContact() {
         return idContact;
     }
 
-    public Lead getLead() {
-        return lead;
+    public void setIdContact(int idContact) {
+        this.idContact = idContact;
     }
 
-    @Override
-    public SalesRep getSalesRep() {
-        return salesRep;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public void setSalesRep(SalesRep salesRep) {
-        this.salesRep = salesRep;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Contact with id" + idContact +
-                ", corresponds to lead: " + lead;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }

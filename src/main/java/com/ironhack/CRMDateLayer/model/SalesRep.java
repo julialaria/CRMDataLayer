@@ -1,6 +1,7 @@
 package com.ironhack.CRMDateLayer.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class SalesRep {
@@ -8,6 +9,11 @@ public class SalesRep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @OneToMany(mappedBy = "salesRep")
+    private List<Lead> leadList;
+    @OneToMany(mappedBy = "salesRep")
+    private List<Opportunity> opportunityList;
+
 
     public SalesRep(){
 

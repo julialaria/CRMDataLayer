@@ -35,10 +35,12 @@ public class Main {
                     try {
                         int idLead = Integer.parseInt(orderSplit[1]);
                         if (leads.containsKey(idLead) && orderSplit.length == 2) {
-                            Contact contact = MainMethods.convertLeadToContact(leads, idLead);
-                            contacts.put(contact.getId(), contact);
+                            SalesRep salesRep = leads.get(idLead).getSalesRep();
 
-                            Opportunity opportunity = CreateOpportunity.create(contact);
+                            Contact contact = MainMethods.convertLeadToContact(leads, idLead);
+                            contacts.put(contact.getIdContact(), contact);
+
+                            Opportunity opportunity = CreateOpportunity.create(contact, salesRep);
                             opportunities.put(opportunity.getId(), opportunity);
 
                             Account account = CreateAccount.create(contact, opportunity, accounts);

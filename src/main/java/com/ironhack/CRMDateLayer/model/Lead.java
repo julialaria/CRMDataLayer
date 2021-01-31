@@ -6,8 +6,7 @@ import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity(name="leads")
 public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +16,10 @@ public class Lead {
     private String email;
     private String companyName;
     //private static int leadIdCounter = 1;
-    @OneToOne
-    @JoinColumn(name = "salesRep_id")
+    @ManyToOne
+    @JoinColumn(name = "salesrep_id")
     private SalesRep salesRep;
+
 
     public Lead(){
 
