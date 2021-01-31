@@ -11,7 +11,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private static int ID_COUNTER = 1;
+    //private static int ID_COUNTER = 1;
     @Enumerated(EnumType.STRING)
     private Industry industry;
     private int employeeCount;
@@ -27,7 +27,7 @@ public class Account {
     }
 
     public Account(Industry industry, int employeeCount, String city, String country, List<Contact> contactList, List<Opportunity> opportunityList) {
-        this.id = ID_COUNTER++;
+        this.id = id;
         this.industry = industry;
         this.employeeCount = employeeCount;
         this.city = city;
