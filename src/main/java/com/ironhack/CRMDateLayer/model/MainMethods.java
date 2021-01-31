@@ -159,7 +159,7 @@ public class MainMethods {
 
     public static void showSalesReps(Map<Integer, SalesRep> salesReps){   //Esto dejará de dar error al imprimir cuando se cree la base de datos
         System.out.println("LEAD ID || LEAD NAME");
-        for (int idSalesRep : salesReps.keySet()){
+        for (int idSalesRep : salesReps.keySet()){                        //el id es autogenerado en SQL, por lo que en main va a ser nulo
             System.out.println(salesReps.get(idSalesRep).shortPrint());
         }
     }
