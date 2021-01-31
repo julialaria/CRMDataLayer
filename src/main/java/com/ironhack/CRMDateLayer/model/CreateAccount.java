@@ -5,6 +5,7 @@ import com.ironhack.CRMDateLayer.enums.Industry;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 import static java.util.List.of;
@@ -13,16 +14,44 @@ public class CreateAccount {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static Account create(Contact contact, Opportunity opportunity) {
-        System.out.println(ConsoleColors.BLUE + "We are going to create an Account");
+    public static Account create(Contact contact, Opportunity opportunity, Map<Integer, Account> accounts ) {
+        Industry industry;
+        int employees;
+        String city;
+        String country;
+        Account account = null;
 
-        Industry industry = enterCorrectIndustry(sc);
-        int employees = getEmployees(sc);
-
-        String city = getCity(sc);
-        String country = getCountry(sc);
-
-        return new Account(industry, employees, city, country, of(contact), of(opportunity));
+        System.out.println(ConsoleColors.BLUE + "Would you like to create a new Account?(Y/N)");
+        Scanner scan = new Scanner(System.in);
+        String newAccount = scan.nextLine();
+        while(true){
+            if (newAccount.equals("Y")){
+                System.out.println(ConsoleColors.BLUE + "We are going to create an Account");
+                industry = enterCorrectIndustry(sc);
+                employees = getEmployees(sc);
+                city = getCity(sc);
+                country = getCountry(sc);
+                account = new Account(industry, employees, city, country, of(contact), of(opportunity));
+                break;
+            }
+            else if (newAccount.equals("N")){
+                System.out.println(ConsoleColors.BLUE + "Please introduce id of your existing Account");
+                String idAccount = scan.nextLine();
+                try{
+                    int idAccountNum = Integer.parseInt(idAccount);
+                    if(accounts.containsKey(idAccountNum)){
+                        account = accounts.get(idAccountNum);
+                        break;
+                    }
+                }catch (IllegalArgumentException e){
+                    System.err.println(ConsoleColors.RED +"Introduce a valid id SalesRep");
+                }
+            }
+            else {
+                System.err.println(ConsoleColors.RED +"Introduce a valid response. Would you like to create a new Account?(Y/N)");
+            }
+        }
+        return account;
     }
 
     public static String getCountry(Scanner scanner) {

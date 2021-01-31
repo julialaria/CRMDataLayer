@@ -134,16 +134,6 @@ public class MainMethods {
         }
     }
 
-    public static String whatNext(){
-        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT + ID", "LOOKUP LEAD + ID", "LOOKUP OPPORTUNITY + ID", "SHOW LEADS", "CLOSE-LOST + ID", "CLOSE-WON + ID"};
-        Scanner scan = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE +"What do you want to do next? " + Arrays.toString(keyPhrases));
-        System.out.println(ConsoleColors.GREEN + "(Write 'EXIT' to close terminal)");
-        String order = scan.nextLine();
-        String[] orderSplit = order.split(" ");
-        return order;
-    }
-
     public static SalesRep newSalesRep(){
 
         Scanner scan = new Scanner(System.in);
@@ -168,5 +158,15 @@ public class MainMethods {
         for (int idSalesRep : salesReps.keySet()){
             System.out.println(salesReps.get(idSalesRep).shortPrint());
         }
+    }
+
+    public static String whatNext(){
+        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT + ID", "LOOKUP LEAD + ID", "LOOKUP OPPORTUNITY + ID", "SHOW LEADS", "CLOSE-LOST + ID", "CLOSE-WON + ID"};
+        Scanner scan = new Scanner(System.in);
+        System.out.println(ConsoleColors.BLUE +"What do you want to do next? " + Arrays.toString(keyPhrases));
+        System.out.println(ConsoleColors.GREEN + "(Write 'EXIT' to close terminal)");
+        String order = scan.nextLine();
+        String[] orderSplit = order.split(" ");
+        return order;
     }
 }
