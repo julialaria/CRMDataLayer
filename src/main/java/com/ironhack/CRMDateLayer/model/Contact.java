@@ -6,8 +6,10 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "id")
 public class Contact extends Lead {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContact;
-    private static int idCounter = 1;
+    //private static int idCounter = 1;
     @OneToOne
     @JoinColumn(name = "lead_id")
     private Lead lead;
@@ -21,7 +23,7 @@ public class Contact extends Lead {
         super(name, phoneNumber, email, companyName, salesRep);
         this.idContact = idContact;
         this.lead = lead;
-        idContact++;
+        //idContact++;
         this.salesRep = salesRep;
     }
 

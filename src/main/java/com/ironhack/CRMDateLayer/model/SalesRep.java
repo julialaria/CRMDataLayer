@@ -15,6 +15,7 @@ public class SalesRep {
 
     public SalesRep(String name) {
         this.name = name;
+        this.id = id;
     }
 
 

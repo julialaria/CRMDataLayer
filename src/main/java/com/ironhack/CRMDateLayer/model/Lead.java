@@ -16,7 +16,7 @@ public class Lead {
     private String phoneNumber;
     private String email;
     private String companyName;
-    private static int leadIdCounter = 1;
+    //private static int leadIdCounter = 1;
     @OneToOne
     @JoinColumn(name = "salesRep_id")
     private SalesRep salesRep;
@@ -27,7 +27,7 @@ public class Lead {
 
     // When instantiating a Lead Object, it is automatically added to the List leadList.
     public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
-        this.id = Lead.leadIdCounter++;
+        //this.id = Lead.leadIdCounter++;
         this.name = name;
         if (isPhoneNumberValid(phoneNumber)){
             this.phoneNumber = phoneNumber;

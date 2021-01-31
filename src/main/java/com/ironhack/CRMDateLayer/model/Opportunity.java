@@ -10,7 +10,7 @@ public class Opportunity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private static int ID_COUNTER = 1;
+    //private static int ID_COUNTER = 1;
     @Enumerated(EnumType.STRING)
     Product product;
     private int quantity;
@@ -34,7 +34,7 @@ public class Opportunity {
         this.decisionMaker = decisionMaker;
         this.status = Status.OPEN;
         this.salesRep = salesRep;
-        this.id = ID_COUNTER++;
+        this.id = id;
     }
 
     @Override
