@@ -64,6 +64,9 @@ public class MainMethods {
                 if(salesReps.containsKey(idNum)){
                     break;
                 }
+                else{
+                    System.err.println(ConsoleColors.RED +"Introduce a valid id SalesRep");
+                }
             }catch (IllegalArgumentException e){
                 System.err.println(ConsoleColors.RED +"Introduce a valid id SalesRep");
             }
@@ -151,8 +154,6 @@ public class MainMethods {
 
         SalesRep salesRep = new SalesRep(name);
         salesReps.put(salesRep.getId(), salesRep);
-        System.out.println(salesRep.getId());
-        System.out.println(salesRep.getName());
 
     }
 
