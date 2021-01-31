@@ -26,7 +26,7 @@ public class Main {
         Map<Integer, Account> accounts = new HashMap<>();
         Map<Integer, SalesRep> salesReps = new HashMap<>();
 
-        while (!order.toUpperCase().equals("EXIT")) {
+        while (!order.equalsIgnoreCase("EXIT")) {
             if (orderSplit.length > 1) {
                 if ((order.toUpperCase().equals(keyPhrases[0]))) {
                     Lead lead = MainMethods.newLead(salesReps);
@@ -41,7 +41,7 @@ public class Main {
                             Opportunity opportunity = CreateOpportunity.create(contact);
                             opportunities.put(opportunity.getId(), opportunity);
 
-                            Account account = CreateAccount.create(contact, opportunity);
+                            Account account = CreateAccount.create(contact, opportunity, accounts);
                             accounts.put(account.getId(), account);
 
                             leads.remove(idLead);

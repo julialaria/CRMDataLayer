@@ -19,13 +19,13 @@ public class CreateAccount {
         int employees;
         String city;
         String country;
-        Account account = null;
+        Account account;
 
         System.out.println(ConsoleColors.BLUE + "Would you like to create a new Account?(Y/N)");
         Scanner scan = new Scanner(System.in);
         String newAccount = scan.nextLine();
         while(true){
-            if (newAccount.equals("Y")){
+            if ((newAccount).equalsIgnoreCase("Y")){
                 System.out.println(ConsoleColors.BLUE + "We are going to create an Account");
                 industry = enterCorrectIndustry(sc);
                 employees = getEmployees(sc);
@@ -34,7 +34,7 @@ public class CreateAccount {
                 account = new Account(industry, employees, city, country, of(contact), of(opportunity));
                 break;
             }
-            else if (newAccount.equals("N")){
+            else if ((newAccount).equalsIgnoreCase("N")){
                 System.out.println(ConsoleColors.BLUE + "Please introduce id of your existing Account");
                 String idAccount = scan.nextLine();
                 try{
