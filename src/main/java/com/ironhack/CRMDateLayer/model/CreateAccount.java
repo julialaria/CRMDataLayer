@@ -2,6 +2,7 @@ package com.ironhack.CRMDateLayer.model;
 
 
 import com.ironhack.CRMDateLayer.enums.Industry;
+import com.ironhack.CRMDateLayer.repository.*;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 import java.util.Locale;
@@ -14,7 +15,7 @@ public class CreateAccount {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static Account create(Contact contact, Opportunity opportunity, Map<Integer, Account> accounts ) {
+    public static Account create(Contact contact, Opportunity opportunity, AccountRepository accountRepository) {
         Industry industry;
         int employees;
         String city;
@@ -39,8 +40,8 @@ public class CreateAccount {
                 String idAccount = scan.nextLine();
                 try{
                     int idAccountNum = Integer.parseInt(idAccount);
-                    if(accounts.containsKey(idAccountNum)){
-                        account = accounts.get(idAccountNum);
+                    if(accountRepository.findById(idAccountNum).isPresent()){
+                        account = accountRepository.findById(idAccountNum).get();
                         break;
                     }
                 }catch (IllegalArgumentException e){

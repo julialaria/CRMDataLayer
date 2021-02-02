@@ -3,7 +3,7 @@ import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.enums.Status;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Opportunity {

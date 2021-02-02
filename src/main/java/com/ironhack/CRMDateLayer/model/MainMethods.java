@@ -3,6 +3,7 @@ package com.ironhack.CRMDateLayer.model;
 import com.ironhack.CRMDateLayer.enums.Status;
 import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.enums.Status;
+import com.ironhack.CRMDateLayer.repository.*;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class MainMethods {
 
-    public static Lead newLead(Map<Integer, SalesRep> salesReps){
+    public static Lead newLead(SalesRepRepository salesRepRepository){
 
         Scanner scan = new Scanner(System.in);
         String nameLead="";
@@ -61,7 +62,8 @@ public class MainMethods {
             idSalesRep = scan.nextLine();
             try{
                 idNum = Integer.parseInt(idSalesRep);
-                if(salesReps.containsKey(idNum)){
+
+                if(salesRepRepository.findById(idNum).isPresent()){
                     break;
                 }
                 else{
@@ -75,68 +77,68 @@ public class MainMethods {
 
         System.out.println(ConsoleColors.BLUE+"Introduce company name of the Lead");
         String companyName = scan.nextLine();
-        Lead lead = new Lead(nameLead, phoneNumber, email, companyName, salesReps.get(idNum));
+        Lead lead = new Lead(nameLead, phoneNumber, email, companyName, salesRepRepository.findById(idNum).get());
         return lead;
     }
 
-    public static Contact convertLeadToContact(Map<Integer, Lead> leads, int idLead){
+    public static Contact convertLeadToContact(LeadRepository leadRepository, int idLead){
 
-        String name = leads.get(idLead).getName();
-        String phoneNumber = leads.get(idLead).getPhoneNumber();
-        String email = leads.get(idLead).getEmail();
-        String companyName = leads.get(idLead).getCompanyName();
+        String name = leadRepository.findById(idLead).get().getName();
+        String phoneNumber = leadRepository.findById(idLead).get().getPhoneNumber();
+        String email = leadRepository.findById(idLead).get().getEmail();
+        String companyName = leadRepository.findById(idLead).get().getCompanyName();
 
         Contact contact = new Contact(name, phoneNumber, email, companyName);
         return contact;
     }
 
-    public static void lookupOpportunity(String[] orderSplit, Map<Integer, Opportunity> opportunities){
+    public static void lookupOpportunity(String[] orderSplit, OpportunityRepository opportunityRepository){
         int idOportunity=Integer.parseInt(orderSplit[2]);
 
-        if (opportunities.containsKey(idOportunity)){
-            System.out.println(opportunities.get(idOportunity).toString());}
+        if (opportunityRepository.findById(idOportunity).isPresent()){
+            System.out.println(opportunityRepository.findById(idOportunity).get().toString());}
         else {
             System.out.println(ConsoleColors.RED +"Opportunity Id is not valid");
         }
     }
 
-    public static void lookupLead(String[] orderSplit, Map<Integer, Lead> leads){
+    public static void lookupLead(String[] orderSplit, LeadRepository leadRepository){
         int idLead = Integer.parseInt(orderSplit[2]);
-        if (leads.containsKey(idLead)){
-            System.out.println(leads.get(idLead).toString());}
+        if (leadRepository.findById(idLead).isPresent()){
+            System.out.println(leadRepository.findById(idLead).get().toString());}
         else {
             System.out.println(ConsoleColors.RED +"Lead Id is not valid");
         }
     }
 
-    public static void showLeads(Map<Integer, Lead> leads){
+    public static void showLeads(LeadRepository leadRepository){
         System.out.println("LEAD ID || LEAD NAME");
-        for (int idLead : leads.keySet()){
-            System.out.println(leads.get(idLead).shortPrint());
+        for (Lead lead : leadRepository.findAll()){
+            System.out.println(lead.shortPrint());
         }
     }
 
-    public static void closeLost(String[] orderSplit, Map<Integer, Opportunity> opportunities){
+    public static void closeLost(String[] orderSplit, OpportunityRepository opportunityRepository){
         int idOpportunity = Integer.parseInt(orderSplit[1]);
-        if (opportunities.containsKey(idOpportunity)){
+        if (opportunityRepository.findById(idOpportunity).isPresent()){
             System.out.println(ConsoleColors.BLUE +"Opportunity with id "+idOpportunity+" changed to close-lost");
-            opportunities.get(idOpportunity).setStatus(Status.CLOSED_LOST);}
+            opportunityRepository.findById(idOpportunity).get().setStatus(Status.CLOSED_LOST);}
         else {
             System.out.println(ConsoleColors.RED +"Opportunity id is not valid");
         }
     }
 
-    public static void closeWon(String[] orderSplit, Map<Integer, Opportunity> opportunities){
+    public static void closeWon(String[] orderSplit, OpportunityRepository opportunityRepository){
         int idOpportunity = Integer.parseInt(orderSplit[1]);
-        if (opportunities.containsKey(idOpportunity)){
+        if (opportunityRepository.findById(idOpportunity).isPresent()){
             System.out.println(ConsoleColors.BLUE +"Opportunity with id "+idOpportunity+" changed to close-won");
-            opportunities.get(idOpportunity).setStatus(Status.CLOSED_WON);}
+            opportunityRepository.findById(idOpportunity).get().setStatus(Status.CLOSED_WON);}
         else {
             System.out.println(ConsoleColors.RED +"Opportunity id is not valid");
         }
     }
 
-    public static void newSalesRep(Map<Integer, SalesRep> salesReps){
+    public static void newSalesRep(SalesRepRepository salesRepRepository){
 
         Scanner scan = new Scanner(System.in);
         String name="";
@@ -152,14 +154,14 @@ public class MainMethods {
         }
 
         SalesRep salesRep = new SalesRep(name);
-        salesReps.put(salesRep.getId(), salesRep);
+        salesRepRepository.save(salesRep);
 
     }
 
-    public static void showSalesReps(Map<Integer, SalesRep> salesReps){   //Esto dejará de dar error al imprimir cuando se cree la base de datos
+    public static void showSalesReps(SalesRepRepository salesRepRepository){
         System.out.println("LEAD ID || LEAD NAME");
-        for (int idSalesRep : salesReps.keySet()){                        //el id es autogenerado en SQL, por lo que en main va a ser nulo
-            System.out.println(salesReps.get(idSalesRep).shortPrint());
+        for (SalesRep salesRep : salesRepRepository.findAll()){
+            System.out.println(salesRep.shortPrint());
         }
     }
 

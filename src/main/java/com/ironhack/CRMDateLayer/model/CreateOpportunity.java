@@ -4,8 +4,7 @@ import com.ironhack.CRMDateLayer.enums.Product;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class CreateOpportunity {
 

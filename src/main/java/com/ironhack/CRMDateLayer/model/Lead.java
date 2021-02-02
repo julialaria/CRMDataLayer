@@ -5,6 +5,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity(name="leads")
 public class Lead {
