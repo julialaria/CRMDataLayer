@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SalesRepRepository extends JpaRepository<SalesRep, Integer> {
-
+    public SalesRep findByName(String name);
 }
