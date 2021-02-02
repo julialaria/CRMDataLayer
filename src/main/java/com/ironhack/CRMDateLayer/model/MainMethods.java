@@ -96,7 +96,7 @@ public class MainMethods {
         int idOportunity=Integer.parseInt(orderSplit[2]);
 
         if (opportunityRepository.findById(idOportunity).isPresent()){
-            System.out.println(opportunityRepository.findById(idOportunity).get().toString());}
+            System.out.println(opportunityRepository.findById(idOportunity).toString());}
         else {
             System.out.println(ConsoleColors.RED +"Opportunity Id is not valid");
         }
@@ -105,7 +105,7 @@ public class MainMethods {
     public static void lookupLead(String[] orderSplit, LeadRepository leadRepository){
         int idLead = Integer.parseInt(orderSplit[2]);
         if (leadRepository.findById(idLead).isPresent()){
-            System.out.println(leadRepository.findById(idLead).get().toString());}
+            System.out.println(leadRepository.findById(idLead).toString());}
         else {
             System.out.println(ConsoleColors.RED +"Lead Id is not valid");
         }
