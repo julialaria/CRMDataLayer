@@ -120,9 +120,12 @@ public class MainMethods {
 
     public static void closeLost(String[] orderSplit, OpportunityRepository opportunityRepository){
         int idOpportunity = Integer.parseInt(orderSplit[1]);
-        if (opportunityRepository.findById(idOpportunity).isPresent()){
-            System.out.println(ConsoleColors.BLUE +"Opportunity with id "+idOpportunity+" changed to close-lost");
-            opportunityRepository.findById(idOpportunity).get().setStatus(Status.CLOSED_LOST);}
+        if (opportunityRepository.findById(idOpportunity).isPresent()) {
+            System.out.println(ConsoleColors.BLUE + "Opportunity with id " + idOpportunity + " changed to close-lost");
+            Opportunity opportunity = opportunityRepository.findById(idOpportunity).get();
+            opportunity.setStatus(Status.CLOSED_LOST);
+            opportunityRepository.save(opportunity);
+        }
         else {
             System.out.println(ConsoleColors.RED +"Opportunity id is not valid");
         }
@@ -132,7 +135,10 @@ public class MainMethods {
         int idOpportunity = Integer.parseInt(orderSplit[1]);
         if (opportunityRepository.findById(idOpportunity).isPresent()){
             System.out.println(ConsoleColors.BLUE +"Opportunity with id "+idOpportunity+" changed to close-won");
-            opportunityRepository.findById(idOpportunity).get().setStatus(Status.CLOSED_WON);}
+            Opportunity opportunity = opportunityRepository.findById(idOpportunity).get();
+            opportunity.setStatus(Status.CLOSED_WON);
+            opportunityRepository.save(opportunity);
+        }
         else {
             System.out.println(ConsoleColors.RED +"Opportunity id is not valid");
         }
