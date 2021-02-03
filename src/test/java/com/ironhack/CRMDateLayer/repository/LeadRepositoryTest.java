@@ -26,11 +26,11 @@ class LeadRepositoryTest {
     @Test
     void getLeadsBySalesRep() {
         List<Object[]> leadsBySalesRep =  leadRepository.getLeadsBySalesRep();
-        assertEquals(leadsBySalesRep.get(0)[0],"James");
-        assertEquals(leadsBySalesRep.get(0)[1],new BigInteger("2"));
+        assertEquals(leadsBySalesRep.get(0)[0],"Sara");
+        assertEquals(leadsBySalesRep.get(0)[1],new BigInteger("1"));
         assertEquals(leadsBySalesRep.get(0)[0],"Julia");
         assertEquals(leadsBySalesRep.get(0)[1],new BigInteger("1"));
-        assertEquals(leadsBySalesRep.get(0)[0],"Sara");
+        assertEquals(leadsBySalesRep.get(0)[0],"James");
         assertEquals(leadsBySalesRep.get(0)[1],new BigInteger("1"));
     }
 
