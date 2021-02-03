@@ -58,16 +58,24 @@ public class CrmDateLayerApplication {
 					"Maria company", salesRepRepository.findByName("Julia").get()));
 
 			accountRepository.deleteAll();
-			accountRepository.save(new Account(Industry.ECOMMERCE, 40, "New York", "EEUU", new ArrayList<>(), new ArrayList<>()));
-			accountRepository.save(new Account(Industry.MANUFACTURING, 840, "Madrid", "Spain", new ArrayList<>(), new ArrayList<>()));
-			accountRepository.save(new Account(Industry.MEDICAL, 4, "Sevilla", "Spain", new ArrayList<>(), new ArrayList<>()));
-			accountRepository.save(new Account(Industry.ECOMMERCE, 25, "Paris", "France", new ArrayList<>(), new ArrayList<>()));
+			accountRepository.save(new Account(Industry.ECOMMERCE, 40, "New York", "EEUU",
+                    new ArrayList<>(), new ArrayList<>()));
+			accountRepository.save(new Account(Industry.MANUFACTURING, 840, "Madrid", "Spain",
+                    new ArrayList<>(), new ArrayList<>()));
+			accountRepository.save(new Account(Industry.MEDICAL, 4, "Sevilla", "Spain",
+                    new ArrayList<>(), new ArrayList<>()));
+			accountRepository.save(new Account(Industry.ECOMMERCE, 25, "Paris", "France",
+                    new ArrayList<>(), new ArrayList<>()));
 
 			contactRepository.deleteAll();
-			contactRepository.save(new Contact("Pepe Lopez", "677777777", "pepe@gmail.com", "Pepe company"));
-			contactRepository.save(new Contact("Victor Cardozo", "688888888", "victor@gmail.com", "Ironhack"));
-			contactRepository.save(new Contact("Elisa Martínez", "699999999", "elisa@gmail.com", "Elisa company"));
-			contactRepository.save(new Contact("María García", "655555555", "maria@gmail.com", "Maria company"));
+			contactRepository.save(new Contact("Pepe Lopez", "677777777", "pepe@gmail.com",
+                    "Pepe company"));
+			contactRepository.save(new Contact("Victor Cardozo", "688888888", "victor@gmail.com",
+                    "Ironhack"));
+			contactRepository.save(new Contact("Elisa Martínez", "699999999", "elisa@gmail.com",
+                    "Elisa company"));
+			contactRepository.save(new Contact("María García", "655555555", "maria@gmail.com",
+                    "Maria company"));
 
 			opportunityRepository.deleteAll();
 			opportunityRepository.save(new Opportunity(Product.BOX, 86, contactRepository.findByName("Pepe Lopez"),
@@ -77,21 +85,37 @@ public class CrmDateLayerApplication {
 			opportunityRepository.save(new Opportunity(Product.BOX, 446, contactRepository.findByName("Elisa Martínez"),
 					salesRepRepository.findByName("Sara").get()));
 			opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"),
-					salesRepRepository.findByName("Julia").get()));
-
-
+                    salesRepRepository.findByName("Julia").get()));
 
 
 			// MAINMETHODS
 
-
 			Scanner scan = new Scanner(System.in);
 			System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
-			System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", \"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\" ");
+			System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", " +
+                    "\"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\" ");
 			String order = scan.nextLine();
 			String[] orderSplit = order.split(" ");
 
-			String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS", "CLOSE-LOST", "CLOSE-WON", "NEW SALESREP", "SHOW SALESREPS"};
+			String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT", "LOOKUP OPPORTUNITY", "LOOKUP LEAD", "SHOW LEADS",
+                    "CLOSE-LOST", "CLOSE-WON", "NEW SALESREP", "SHOW SALESREPS"};
+
+            String[] bySalesRep = new String[]{"Report Lead by SalesRep", "Report Opportunity by SalesRep", "Report CLOSED-WON by SalesRep",
+                    "Report CLOSED-LOST by SalesRep", "Report OPEN by SalesRep"};
+            String[] byProduct = new String[]{"Report Lead by Product", "Report Opportunity by product", "Report CLOSED-WON by product",
+                    "Report CLOSED-LOST by product", "Report OPEN by product"};
+            String[] byCountry = new String[]{"Report Lead by Country", "Report Opportunity by Country", "Report CLOSED-WON by Country",
+                    "Report CLOSED-LOST by Country", "Report OPEN by Country"};
+            String[] byCity = new String[]{"Report Lead by City", "Report Opportunity by City", "Report CLOSED-WON by City",
+                    "Report CLOSED-LOST by City", "Report OPEN by City"};
+            String[] byIndustry = new String[]{"Report Lead by Industry", "Report Opportunity by Industry", "Report CLOSED-WON by Industry",
+                    "Report CLOSED-LOST by Industry", "Report OPEN by Industry"};
+            String[] employeeCountStates = new String[]{"Mean EmployeeCount", "Median EmployeeCount", "Max EmployeeCount",
+                    "Min EmployeeCount"};
+            String[] quantityStates = new String[]{"Mean Quantity", "Median Quantity", "Max Quantity", "Min Quantity"};
+            String[] opportunityStates = new String[]{"Mean Opps per Account", "Median Opps per Account", "Max Opps per Account",
+                    "Min Opps per Account"};
+
 
 			while (!order.equalsIgnoreCase("EXIT")) {
 				if (orderSplit.length > 1) {
