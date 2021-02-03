@@ -31,55 +31,9 @@ public class CRMMenuApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        salesRepRepository.deleteAll();
-        salesRepRepository.save(new SalesRep("James"));
-        salesRepRepository.save(new SalesRep("Sara"));
-        salesRepRepository.save(new SalesRep("Michael"));
-        salesRepRepository.save(new SalesRep("Julia"));
-
-        leadRepository.deleteAll();
-        leadRepository.save(new Lead("Pepe Lopez", "677777777", "pepe@gmail.com",
-                "Pepe company", salesRepRepository.findByName("James").get()));
-        leadRepository.save(new Lead("Victor Cardozo", "688888888", "victor@gmail.com",
-                "Ironhack", salesRepRepository.findByName("James").get()));
-        leadRepository.save(new Lead("Elisa Martínez", "699999999", "elisa@gmail.com",
-                "Elisa company", salesRepRepository.findByName("Sara").get()));
-        leadRepository.save(new Lead("María García", "655555555", "maria@gmail.com",
-                "Maria company", salesRepRepository.findByName("Julia").get()));
-
-        accountRepository.deleteAll();
-        accountRepository.save(new Account(Industry.ECOMMERCE, 40, "New York", "EEUU",
-                new ArrayList<>(), new ArrayList<>()));
-        accountRepository.save(new Account(Industry.MANUFACTURING, 840, "Madrid", "Spain",
-                new ArrayList<>(), new ArrayList<>()));
-        accountRepository.save(new Account(Industry.MEDICAL, 4, "Sevilla", "Spain",
-                new ArrayList<>(), new ArrayList<>()));
-        accountRepository.save(new Account(Industry.ECOMMERCE, 25, "Paris", "France",
-                new ArrayList<>(), new ArrayList<>()));
-
-        contactRepository.deleteAll();
-        contactRepository.save(new Contact("Pepe Lopez", "677777777", "pepe@gmail.com",
-                "Pepe company"));
-        contactRepository.save(new Contact("Victor Cardozo", "688888888", "victor@gmail.com",
-                "Ironhack"));
-        contactRepository.save(new Contact("Elisa Martínez", "699999999", "elisa@gmail.com",
-                "Elisa company"));
-        contactRepository.save(new Contact("María García", "655555555", "maria@gmail.com",
-                "Maria company"));
-
-        opportunityRepository.deleteAll();
-        opportunityRepository.save(new Opportunity(Product.BOX, 86, contactRepository.findByName("Pepe Lopez"),
-                salesRepRepository.findByName("James").get()));
-        opportunityRepository.save(new Opportunity(Product.FLATBED, 186, contactRepository.findByName("Victor Cardozo"),
-                salesRepRepository.findByName("James").get()));
-        opportunityRepository.save(new Opportunity(Product.BOX, 446, contactRepository.findByName("Elisa Martínez"),
-                salesRepRepository.findByName("Sara").get()));
-        opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"),
-                salesRepRepository.findByName("Julia").get()));
-
+        addSampleData();
 
         // MAINMETHODS
-
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
         System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", " +
@@ -161,5 +115,53 @@ public class CRMMenuApplication implements CommandLineRunner {
             order = MainMethods.whatNext();
             orderSplit = order.split(" ");
         }
+    }
+
+    private void addSampleData() {
+        salesRepRepository.deleteAll();
+        salesRepRepository.save(new SalesRep("James"));
+        salesRepRepository.save(new SalesRep("Sara"));
+        salesRepRepository.save(new SalesRep("Michael"));
+        salesRepRepository.save(new SalesRep("Julia"));
+
+        leadRepository.deleteAll();
+        leadRepository.save(new Lead("Pepe Lopez", "677777777", "pepe@gmail.com",
+                "Pepe company", salesRepRepository.findByName("James").get()));
+        leadRepository.save(new Lead("Victor Cardozo", "688888888", "victor@gmail.com",
+                "Ironhack", salesRepRepository.findByName("James").get()));
+        leadRepository.save(new Lead("Elisa Martínez", "699999999", "elisa@gmail.com",
+                "Elisa company", salesRepRepository.findByName("Sara").get()));
+        leadRepository.save(new Lead("María García", "655555555", "maria@gmail.com",
+                "Maria company", salesRepRepository.findByName("Julia").get()));
+
+        accountRepository.deleteAll();
+        accountRepository.save(new Account(Industry.ECOMMERCE, 40, "New York", "EEUU",
+                new ArrayList<>(), new ArrayList<>()));
+        accountRepository.save(new Account(Industry.MANUFACTURING, 840, "Madrid", "Spain",
+                new ArrayList<>(), new ArrayList<>()));
+        accountRepository.save(new Account(Industry.MEDICAL, 4, "Sevilla", "Spain",
+                new ArrayList<>(), new ArrayList<>()));
+        accountRepository.save(new Account(Industry.ECOMMERCE, 25, "Paris", "France",
+                new ArrayList<>(), new ArrayList<>()));
+
+        contactRepository.deleteAll();
+        contactRepository.save(new Contact("Pepe Lopez", "677777777", "pepe@gmail.com",
+                "Pepe company"));
+        contactRepository.save(new Contact("Victor Cardozo", "688888888", "victor@gmail.com",
+                "Ironhack"));
+        contactRepository.save(new Contact("Elisa Martínez", "699999999", "elisa@gmail.com",
+                "Elisa company"));
+        contactRepository.save(new Contact("María García", "655555555", "maria@gmail.com",
+                "Maria company"));
+
+        opportunityRepository.deleteAll();
+        opportunityRepository.save(new Opportunity(Product.BOX, 86, contactRepository.findByName("Pepe Lopez"),
+                salesRepRepository.findByName("James").get()));
+        opportunityRepository.save(new Opportunity(Product.FLATBED, 186, contactRepository.findByName("Victor Cardozo"),
+                salesRepRepository.findByName("James").get()));
+        opportunityRepository.save(new Opportunity(Product.BOX, 446, contactRepository.findByName("Elisa Martínez"),
+                salesRepRepository.findByName("Sara").get()));
+        opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"),
+                salesRepRepository.findByName("Julia").get()));
     }
 }
