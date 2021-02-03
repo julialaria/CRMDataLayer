@@ -144,7 +144,17 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
     @Query(value = "SELECT MIN(quantity) FROM opportunity", nativeQuery = true)
     public List<Object[]> minQuantityOfOrders();
 
+//    ----------------------------------------------------------------------------
+//    ----------------------------------------------------------------------------
+//    ----------------------------------------------------------------------------
 
+    @Query(value = "select AVG(counts) from(select account_id, COUNT(*) as counts from opportunity GROUP BY account_id) as table1", nativeQuery = true)
+    public List<Object[]> averageOpportunitiesInAccount();
 
+    @Query(value = "Select MAX(counts) from (select COUNT(*) as counts from opportunity GROUP BY account_id) as table1", nativeQuery = true)
+    public List<Object[]> maxOpportunitiesInAccount();
+
+    @Query(value = "Select MIN(counts) from (select COUNT(*) as counts from opportunity GROUP BY account_id) as table1", nativeQuery = true)
+    public List<Object[]> minOpportunitiesInAccount();
 
 }

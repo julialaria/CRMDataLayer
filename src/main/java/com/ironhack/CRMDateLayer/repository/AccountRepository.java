@@ -44,7 +44,4 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     public List<Object[]> meanQuantityOfOpportunities();
 
 
-
-
-
 }

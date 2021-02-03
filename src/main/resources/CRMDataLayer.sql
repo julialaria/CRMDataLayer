@@ -210,9 +210,10 @@ SELECT MIN(quantity) FROM opportunity;
 -- --------------------------------------------------------------------------------------------------------
 
 -- The mean number of Opportunities associated with an Account can be displayed by typing "Mean Opps per Account"
-
+select AVG(counts) from(select account_id, COUNT(*) as counts from opportunity GROUP BY account_id) as table1;
 -- The median number of Opportunities associated with an Account can be displayed by typing "Median Opps per Account"
 
 -- The maximum number of Opportunities associated with an Account can be displayed by typing "Max Opps per Account"
-
+Select MAX(counts) from (select COUNT(*) as counts from opportunity GROUP BY account_id) as table1;
 -- The minimum number of Opportunities associated with an Account can be displayed by typing "Min Opps per Account"
+Select MIN(counts) from (select COUNT(*) as counts from opportunity GROUP BY account_id) as table1;

@@ -128,6 +128,17 @@ public class CRMMenuApplication implements CommandLineRunner {
                     printResult(opportunityRepository.countOpportunitiesByProductClosedWon());
                 }else if(order.toUpperCase().equals(byProduct[2].toUpperCase())){
                     printResult(opportunityRepository.countOpportunitiesByProductClosedLost());
+                }else if(order.toUpperCase().equals(byProduct[3].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByProductOpen());
+
+                }else if(order.toUpperCase().equals(byCountry[0].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCountry());
+                }else if(order.toUpperCase().equals(byCountry[1].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCountryClosedWon());
+                }else if(order.toUpperCase().equals(byCountry[2].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCountryClosedLost());
+                }else if(order.toUpperCase().equals(byCountry[3].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCountryOpen());
 
                 }else if(order.toUpperCase().equals(byCity[0].toUpperCase())){
                     printResult(opportunityRepository.countOpportunitiesByCity());
@@ -137,6 +148,7 @@ public class CRMMenuApplication implements CommandLineRunner {
                     printResult(opportunityRepository.countOpportunitiesByCityClosedLost());
                 }else if(order.toUpperCase().equals(byCity[3].toUpperCase())){
                     printResult(opportunityRepository.countOpportunitiesByCityOpen());
+
 
                 }else if(order.toUpperCase().equals(byIndustry[0].toUpperCase())){
                     printResult(opportunityRepository.countOpportunitiesByIndustry());
@@ -164,6 +176,15 @@ public class CRMMenuApplication implements CommandLineRunner {
                     printResult(opportunityRepository.maxQuantityOfOrders());
                 }else if(order.toUpperCase().equals(quantityStates[3].toUpperCase())){
                     printResult(opportunityRepository.minQuantityOfOrders());
+
+                }else if(order.toUpperCase().equals(opportunityStates[0].toUpperCase())){
+                    printResult(opportunityRepository.averageOpportunitiesInAccount());
+                }else if(order.toUpperCase().equals(opportunityStates[1].toUpperCase())){
+                    //printResult(opportunityRepository.medianQuantityOfOrders());
+                }else if(order.toUpperCase().equals(opportunityStates[2].toUpperCase())){
+                    printResult(opportunityRepository.maxOpportunitiesInAccount());
+                }else if(order.toUpperCase().equals(opportunityStates[3].toUpperCase())){
+                    printResult(opportunityRepository.minOpportunitiesInAccount());
 
 
                 } else {
