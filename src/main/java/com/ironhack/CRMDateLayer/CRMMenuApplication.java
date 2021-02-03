@@ -6,12 +6,14 @@ import com.ironhack.CRMDateLayer.repository.*;
 import com.ironhack.CRMDateLayer.style.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 @Component
+@Profile("!test")
 public class CRMMenuApplication implements CommandLineRunner {
 
     @Autowired
@@ -59,7 +61,6 @@ public class CRMMenuApplication implements CommandLineRunner {
         String[] quantityStates = new String[]{"Mean Quantity", "Median Quantity", "Max Quantity", "Min Quantity"};
         String[] opportunityStates = new String[]{"Mean Opps per Account", "Median Opps per Account", "Max Opps per Account",
                 "Min Opps per Account"};
-
 
         while (!order.equalsIgnoreCase("EXIT")) {
             if (orderSplit.length > 1) {

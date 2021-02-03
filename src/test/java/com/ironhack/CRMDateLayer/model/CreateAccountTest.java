@@ -12,8 +12,11 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import com.ironhack.CRMDateLayer.model.CreateAccount.*;
+import org.springframework.test.context.ActiveProfiles;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("test")
 class CreateAccountTest {
 
     @Test

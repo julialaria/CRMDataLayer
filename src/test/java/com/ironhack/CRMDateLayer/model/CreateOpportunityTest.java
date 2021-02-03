@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Scanner;
 
 import com.ironhack.CRMDateLayer.model.CreateOpportunity.*;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("test")
 class CreateOpportunityTest {
 
     @Test

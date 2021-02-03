@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.ironhack.CRMDateLayer.enums.Industry;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("test")
 class AccountTest {
     @Test
     void generate_correct_id() {

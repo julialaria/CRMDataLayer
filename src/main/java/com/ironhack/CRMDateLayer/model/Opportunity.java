@@ -31,13 +31,20 @@ public class Opportunity {
     }
 
     public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep) {
-
         this.product = product;
         this.quantity = quantity;
         this.decisionMaker = decisionMaker;
         this.status = Status.OPEN;
         this.salesRep = salesRep;
         this.id = id;
+    }
+
+    public Opportunity(Product product, int quantity,Contact decisionMaker, Status status, SalesRep salesRep) {
+        this.product = product;
+        this.quantity = quantity;
+        this.decisionMaker = decisionMaker;
+        this.status = status;
+        this.salesRep = salesRep;
     }
 
     @Override
