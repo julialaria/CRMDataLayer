@@ -29,7 +29,11 @@ public class Opportunity {
     public Opportunity(){
 
     }
-
+    
+    public Opportunity(Account account) {
+        this.account = account;
+    }
+    
     public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep) {
         this.product = product;
         this.quantity = quantity;
@@ -100,4 +104,8 @@ public class Opportunity {
     public void setSalesRep(SalesRep salesRep) {
         this.salesRep = salesRep;
     }
+    
+    public Account getAccount() { return account; }
+    
+    public void setAccount(Account account) { this.account = account; }
 }

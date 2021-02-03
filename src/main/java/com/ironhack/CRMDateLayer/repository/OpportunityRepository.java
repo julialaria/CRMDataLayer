@@ -28,7 +28,10 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
 //    A count of all OPEN Opportunities by SalesRep
     @Query(value = "SELECT s.name , count(*) FROM opportunity o INNER JOIN sales_rep s ON o.salesrep_id = s.id where status = 'OPEN' GROUP BY o.salesrep_id", nativeQuery = true)
     List<Object[]> countOpportunitiesBySalesRepOpen();
-
+    
+    
+    
+    
 //    ----------------------------------------------------------------------------
 //    ---------------------------------By Product --------------------------------
 //    ----------------------------------------------------------------------------
