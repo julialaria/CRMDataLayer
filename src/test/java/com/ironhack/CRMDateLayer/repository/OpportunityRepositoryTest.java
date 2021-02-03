@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -72,6 +74,77 @@ class OpportunityRepositoryTest {
         assertEquals(response.get(2)[1], new BigInteger("1"));
     }
 
+    @Test
+    void countOpportunitiesByProduct() {
+        List<Object[]> response = opportunityRepository.countOpportunitiesByProduct();
+        assertEquals(response.get(0)[0], "BOX");
+        assertEquals(response.get(0)[1], new BigInteger("5"));
+        assertEquals(response.get(1)[0], "FLATBED");
+        assertEquals(response.get(1)[1], new BigInteger("1"));
+    }
+
+    @Test
+    void countOpportunitiesByProductClosedWon() {
+        List<Object[]> response = opportunityRepository.countOpportunitiesByProductClosedWon();
+        assertEquals(response.get(0)[0], "BOX");
+        assertEquals(response.get(0)[1], new BigInteger("1"));
+
+    }
+
+    @Test
+    void countOpportunitiesByProductClosedLost() {
+        List<Object[]> response = opportunityRepository.countOpportunitiesByProductClosedLost();
+        assertEquals(response.get(0)[0], "BOX");
+        assertEquals(response.get(0)[1], new BigInteger("1"));
+
+    }
+
+    @Test
+    void countOpportunitiesByProductOpen() {
+        List<Object[]> response = opportunityRepository.countOpportunitiesByProductOpen();
+        assertEquals(response.get(0)[0], "BOX");
+        assertEquals(response.get(0)[1], new BigInteger("3"));
+        assertEquals(response.get(1)[0], "FLATBED");
+        assertEquals(response.get(1)[1], new BigInteger("1"));
+    }
+
+//    @Test
+//    void countOpportunitiesByCountry() {
+//        List<Object[]> response = opportunityRepository.countOpportunitiesByCountry();
+//        response.forEach(System.out::println);
+//        assertEquals(response.get(0)[0], "EEUU");
+//        assertEquals(response.get(0)[1], new BigInteger("2"));
+//        assertEquals(response.get(1)[0], "Spain");
+//        assertEquals(response.get(1)[1], new BigInteger("2"));
+//    }
+
+
+    @Test
+    void meanQuantityOfOrders(){
+        List<Object[]> response = opportunityRepository.meanQuantityOfOrders();
+        assertEquals( response.get(0)[0], 600.00);
+    }
+
+    @Test
+    void medianQuantityOfOrders(){
+        List<Object[]> response = opportunityRepository.medianQuantityOfOrders();
+        assertEquals(response.get(0)[0], 678);
+    }
+
+    @Test
+    void maxQuantityOfOrders(){
+        List<Object[]> response = opportunityRepository.maxQuantityOfOrders();
+        assertEquals(response.get(0)[0], 986);
+    }
+
+    @Test
+    void minQuantityOfOrders(){
+        List<Object[]> response = opportunityRepository.minQuantityOfOrders();
+        assertEquals(response.get(0)[0], 86);
+    }
+
+
+
     @BeforeEach
     void setUp() {
         salesRepRepository.deleteAll();
@@ -117,10 +190,13 @@ class OpportunityRepositoryTest {
                 salesRepRepository.findByName("James").get()));
         opportunityRepository.save(new Opportunity(Product.BOX, 446, contactRepository.findByName("Elisa Martínez"),
                 salesRepRepository.findByName("Sara").get()));
-        opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"),
+        opportunityRepository.save(new Opportunity(Product.BOX, 910, contactRepository.findByName("María García"),
                 salesRepRepository.findByName("Julia").get()));
         opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"), Status.CLOSED_LOST, salesRepRepository.findByName("James").get()));
         opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"), Status.CLOSED_WON, salesRepRepository.findByName("Julia").get()));
+
+
+
     }
 
     @AfterEach
