@@ -196,7 +196,6 @@ class OpportunityRepositoryTest {
         opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"), Status.CLOSED_WON, salesRepRepository.findByName("Julia").get()));
 
 
-
     }
 
     @AfterEach

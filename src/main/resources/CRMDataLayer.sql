@@ -202,7 +202,7 @@ o.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2));
 
 -- The maximum quanitity of products order can be displayed by typing "Max Quantity"
 SELECT MAX(quantity) FROM opportunity;
--- The minimum quanitity of products order can be displayed by typing "Min Quantity"
+-- The minimum quantity of products order can be displayed by typing "Min Quantity"
 SELECT MIN(quantity) FROM opportunity;
 
 -- --------------------------------------------------------------------------------------------------------

@@ -40,6 +40,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query(value = "SELECT MIN(employeeCount) FROM account", nativeQuery = true)
     public List<Object[]> minQuantityOfOrders();
 
+    @Query(value = "SELECT () FROM account", nativeQuery = true)
+    public List<Object[]> meanQuantityOfOpportunities();
+
 
 
 

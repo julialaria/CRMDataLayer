@@ -7,9 +7,12 @@ import com.ironhack.CRMDateLayer.style.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.expression.spel.ast.OpOr;
 import org.springframework.stereotype.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 @Component
@@ -39,7 +42,7 @@ public class CRMMenuApplication implements CommandLineRunner {
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
         System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", " +
-                "\"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\" ");
+                "\"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\", \"HELP\" ");
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
 
@@ -48,13 +51,13 @@ public class CRMMenuApplication implements CommandLineRunner {
 
         String[] bySalesRep = new String[]{"Report Lead by SalesRep", "Report Opportunity by SalesRep", "Report CLOSED-WON by SalesRep",
                 "Report CLOSED-LOST by SalesRep", "Report OPEN by SalesRep"};
-        String[] byProduct = new String[]{"Report Lead by Product", "Report Opportunity by product", "Report CLOSED-WON by product",
+        String[] byProduct = new String[]{"Report Opportunity by product", "Report CLOSED-WON by product",
                 "Report CLOSED-LOST by product", "Report OPEN by product"};
-        String[] byCountry = new String[]{"Report Lead by Country", "Report Opportunity by Country", "Report CLOSED-WON by Country",
+        String[] byCountry = new String[]{"Report Opportunity by Country", "Report CLOSED-WON by Country",
                 "Report CLOSED-LOST by Country", "Report OPEN by Country"};
-        String[] byCity = new String[]{"Report Lead by City", "Report Opportunity by City", "Report CLOSED-WON by City",
+        String[] byCity = new String[]{"Report Opportunity by City", "Report CLOSED-WON by City",
                 "Report CLOSED-LOST by City", "Report OPEN by City"};
-        String[] byIndustry = new String[]{"Report Lead by Industry", "Report Opportunity by Industry", "Report CLOSED-WON by Industry",
+        String[] byIndustry = new String[]{"Report Opportunity by Industry", "Report CLOSED-WON by Industry",
                 "Report CLOSED-LOST by Industry", "Report OPEN by Industry"};
         String[] employeeCountStates = new String[]{"Mean EmployeeCount", "Median EmployeeCount", "Max EmployeeCount",
                 "Min EmployeeCount"};
@@ -107,11 +110,67 @@ public class CRMMenuApplication implements CommandLineRunner {
                 } else if (order.toUpperCase().equals(keyPhrases[8])) {
                     MainMethods.showSalesReps(salesRepRepository);
 
+
+                } else if(order.toUpperCase().equals(bySalesRep[0].toUpperCase())){
+                    printResult(leadRepository.getLeadsBySalesRep());
+                }else if(order.toUpperCase().equals(bySalesRep[1].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesBySalesRep());
+                }else if(order.toUpperCase().equals(bySalesRep[2].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesBySalesRepClosedWon());
+                }else if(order.toUpperCase().equals(bySalesRep[3].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesBySalesRepClosedLost());
+                }else if(order.toUpperCase().equals(bySalesRep[4].toUpperCase())){
+
+                    printResult(opportunityRepository.countOpportunitiesBySalesRepOpen());
+                }else if(order.toUpperCase().equals(byProduct[0].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByProduct());
+                }else if(order.toUpperCase().equals(byProduct[1].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByProductClosedWon());
+                }else if(order.toUpperCase().equals(byProduct[2].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByProductClosedLost());
+
+                }else if(order.toUpperCase().equals(byCity[0].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCity());
+                }else if(order.toUpperCase().equals(byCity[1].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCityClosedWon());
+                }else if(order.toUpperCase().equals(byCity[2].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCityClosedLost());
+                }else if(order.toUpperCase().equals(byCity[3].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByCityOpen());
+
+                }else if(order.toUpperCase().equals(byIndustry[0].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByIndustry());
+                }else if(order.toUpperCase().equals(byIndustry[1].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByIndustryClosedWon());
+                }else if(order.toUpperCase().equals(byIndustry[2].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByIndustryClosedLost());
+                }else if(order.toUpperCase().equals(byIndustry[3].toUpperCase())){
+                    printResult(opportunityRepository.countOpportunitiesByIndustryOpen());
+
+                }else if(order.toUpperCase().equals(employeeCountStates[0].toUpperCase())){
+                    printResult(opportunityRepository.meanQuantityOfOrders());
+                }else if(order.toUpperCase().equals(employeeCountStates[1].toUpperCase())){
+                    printResult(opportunityRepository.medianQuantityOfOrders());
+                }else if(order.toUpperCase().equals(employeeCountStates[2].toUpperCase())){
+                    printResult(opportunityRepository.maxQuantityOfOrders());
+                }else if(order.toUpperCase().equals(employeeCountStates[3].toUpperCase())){
+                    printResult(opportunityRepository.minQuantityOfOrders());
+
+                }else if(order.toUpperCase().equals(quantityStates[0].toUpperCase())){
+                    printResult(opportunityRepository.meanQuantityOfOrders());
+                }else if(order.toUpperCase().equals(quantityStates[1].toUpperCase())){
+                    printResult(opportunityRepository.medianQuantityOfOrders());
+                }else if(order.toUpperCase().equals(quantityStates[2].toUpperCase())){
+                    printResult(opportunityRepository.maxQuantityOfOrders());
+                }else if(order.toUpperCase().equals(quantityStates[3].toUpperCase())){
+                    printResult(opportunityRepository.minQuantityOfOrders());
+
+
                 } else {
-                    System.out.println(ConsoleColors.RED + "COMAND NOT FOUND");
+                    System.out.println(ConsoleColors.RED + "COMMAND NOT FOUND");
                 }
             } else {
-                System.out.println(ConsoleColors.RED + "COMAND NOT FOUND");
+                System.out.println(ConsoleColors.RED + "COMMAND NOT FOUND");
             }
             order = MainMethods.whatNext();
             orderSplit = order.split(" ");
@@ -164,5 +223,24 @@ public class CRMMenuApplication implements CommandLineRunner {
                 salesRepRepository.findByName("Sara").get()));
         opportunityRepository.save(new Opportunity(Product.BOX, 986, contactRepository.findByName("María García"),
                 salesRepRepository.findByName("Julia").get()));
+    }
+    private void printResult (List<Object[]> objects){
+
+        if (objects.size()==0){
+            System.out.println("There is no data for your request");
+        }
+
+        for (int i=0;i<objects.size();i++){
+            for (int j=0;j<objects.get(i).length;j++){
+                System.out.print(objects.get(i)[j]);
+                if (j!=objects.get(i).length-1){
+                    System.out.print("\t");
+                }
+            }
+            if (i!= objects.size()){
+                System.out.print("\n");
+            }
+        }
+
     }
 }
