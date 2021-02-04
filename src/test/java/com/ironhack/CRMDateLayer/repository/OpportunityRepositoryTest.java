@@ -111,7 +111,6 @@ class OpportunityRepositoryTest {
     @Test
     void countOpportunitiesByCountry() {
         List<Object[]> response = opportunityRepository.countOpportunitiesByCountry();
-        response.forEach(System.out::println);
         assertEquals(response.get(0)[0], "EEUU");
         assertEquals(response.get(0)[1], new BigInteger("2"));
         assertEquals(response.get(1)[0], "Spain");
@@ -127,8 +126,9 @@ class OpportunityRepositoryTest {
 
     @Test
     void medianQuantityOfOrders() {
+        opportunityRepository.setRowIndex();
         List<Object[]> response = opportunityRepository.medianQuantityOfOrders();
-        assertEquals(response.get(0)[0], 678);
+        assertEquals(response.get(0)[0], new BigDecimal("678.0000"));
     }
 
     @Test
