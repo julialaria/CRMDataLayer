@@ -84,10 +84,11 @@ public class MainMethods {
 
     public static Contact convertLeadToContact(LeadRepository leadRepository, int idLead){
 
-        String name = leadRepository.findById(idLead).get().getName();
-        String phoneNumber = leadRepository.findById(idLead).get().getPhoneNumber();
-        String email = leadRepository.findById(idLead).get().getEmail();
-        String companyName = leadRepository.findById(idLead).get().getCompanyName();
+        Lead lead = leadRepository.findById(idLead).get();
+        String name = lead.getName();
+        String phoneNumber = lead.getPhoneNumber();
+        String email = lead.getEmail();
+        String companyName = lead.getCompanyName();
 
         Contact contact = new Contact(name, phoneNumber, email, companyName);
         return contact;
