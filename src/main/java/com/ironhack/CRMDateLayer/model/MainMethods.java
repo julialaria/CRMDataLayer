@@ -154,11 +154,11 @@ public class MainMethods {
         boolean isValid = false;
 
         while(!isValid){
-            System.out.println(ConsoleColors.BLUE+"Please specify the name of the lead");
+            System.out.println(ConsoleColors.BLUE+"Please specify the name of the sales rep");
             name = scan.nextLine();
             isValid = name.matches("[a-zA-Z]+");
             if(!isValid){
-                System.out.println(ConsoleColors.RED+"The name of the lead is not valid. Can contain only letters");
+                System.out.println(ConsoleColors.RED+"the name of the sales rep is not valid. Can contain only letters");
             }
         }
 
