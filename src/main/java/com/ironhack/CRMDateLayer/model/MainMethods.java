@@ -9,6 +9,7 @@ import com.ironhack.CRMDateLayer.style.ConsoleColors;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MainMethods {
@@ -94,9 +95,9 @@ public class MainMethods {
 
     public static void lookupOpportunity(String[] orderSplit, OpportunityRepository opportunityRepository){
         int idOportunity=Integer.parseInt(orderSplit[2]);
-
-        if (opportunityRepository.findById(idOportunity).isPresent()){
-            System.out.println(opportunityRepository.findById(idOportunity).toString());}
+        Optional<Opportunity> opportunity = opportunityRepository.findById(idOportunity);
+        if (opportunity.isPresent()){
+            System.out.println(opportunity.get().toString());}
         else {
             System.out.println(ConsoleColors.RED +"Opportunity Id is not valid");
         }
@@ -104,8 +105,9 @@ public class MainMethods {
 
     public static void lookupLead(String[] orderSplit, LeadRepository leadRepository){
         int idLead = Integer.parseInt(orderSplit[2]);
-        if (leadRepository.findById(idLead).isPresent()){
-            System.out.println(leadRepository.findById(idLead).toString());}
+        Optional<Lead> lead = leadRepository.findById(idLead);
+        if (lead.isPresent()){
+            System.out.println(lead.get().toString());}
         else {
             System.out.println(ConsoleColors.RED +"Lead Id is not valid");
         }
