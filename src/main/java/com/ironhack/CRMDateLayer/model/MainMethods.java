@@ -175,10 +175,9 @@ public class MainMethods {
     }
 
     public static String whatNext(){
-        String[] keyPhrases = new String[]{"NEW LEAD", "CONVERT + ID", "LOOKUP LEAD + ID", "LOOKUP OPPORTUNITY + ID", "SHOW LEADS", "CLOSE-LOST + ID", "CLOSE-WON + ID"};
         Scanner scan = new Scanner(System.in);
-        System.out.println(ConsoleColors.BLUE +"What do you want to do next? " + Arrays.toString(keyPhrases));
-        System.out.println(ConsoleColors.GREEN + "(Write 'EXIT' to close terminal)");
+        System.out.println("\nPlease write a order: \n(Write 'COMMANDS HELP' if you need to show available commands)");
+        System.out.println("(Write 'EXIT' to close terminal)");
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
         return order;

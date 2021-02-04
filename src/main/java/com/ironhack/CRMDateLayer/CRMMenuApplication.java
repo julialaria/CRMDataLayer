@@ -41,8 +41,7 @@ public class CRMMenuApplication implements CommandLineRunner {
         // MAINMETHODS
         Scanner scan = new Scanner(System.in);
         System.out.println(ConsoleColors.BLUE_BACKGROUND + "\n WELCOME TO CRM-SYSTEM \n");
-        System.out.println(ConsoleColors.BLUE + "Please write a order: \"NEW LEAD\", \"CONVERT\", \"LOOKUP OPPORTUNITY\", " +
-                "\"LOOKUP LEAD\", \"SHOW LEADS\", \"CLOSE-LOST\", \"CLOSE-WON\", \"NEW SALESREP\", \"SHOW SALESREPS\", \"HELP\" ");
+        System.out.println(ConsoleColors.BLUE + "\nPlease write a order: \n(Write 'COMMANDS HELP' if you need to show available commands)");
         String order = scan.nextLine();
         String[] orderSplit = order.split(" ");
 
@@ -189,6 +188,61 @@ public class CRMMenuApplication implements CommandLineRunner {
                 }else if(order.toUpperCase().equals(opportunityStates[3].toUpperCase())){
                     printResult(opportunityRepository.minOpportunitiesInAccount());
 
+
+                } else if(order.toUpperCase().equals("COMMANDS HELP")){
+                    System.out.println("===================GENERAL COMMANDS===================\n" +
+                            "NEW LEAD -- create a new lead\n" +
+                            "CONVERT {idLead} -- convert a lead to a opportunity\n" +
+                            "LOOKUP OPPORTUNITY {idOpportunity} -- show info of an opportunity\n" +
+                            "LOOKUP LEAD {idLead} -- show info of a lead\n" +
+                            "SHOW LEADS -- show info of leads\n" +
+                            "CLOSE-LOST {idOpportunity} -- set opportunity status to close-lost\n" +
+                            "CLOSE-WON {idOpportunity} -- set opportunity status to close-won\n" +
+                            "NEW SALESREP -- create a new salesRep\n" +
+                            "SHOW SALESREPS -- show info of salesReps\n" +
+                            "===================REPORTING COMMANDS===================\n" +
+                            "===================BY SALESREP===================\n" +
+                            "REPORT LEAD BY SALESREP -- count of Leads by SalesRep\n" +
+                            "REPORT OPPORTUNITY BY SALESREP -- count of all Opportunities by SalesRep\n" +
+                            "REPORT CLOSED-WON BY SALESREP -- count of all CLOSED_WON Opportunities by SalesRep\n" +
+                            "REPORT CLOSED-LOST BY SALESREP -- count of all CLOSED_LOST Opportunities by SalesRep\n" +
+                            "REPORT OPEN BY SALESREP -- count of all OPEN Opportunities by SalesRep\n" +
+                            "===================BY PRODUCT===================\n" +
+                            "REPORT OPPORTUNITY BY PRODUCT -- count of all Opportunities by product\n" +
+                            "REPORT CLOSED-WON BY PRODUCT -- count of all CLOSED_WON Opportunities by product\n" +
+                            "REPORT CLOSED-LOST BY PRODUCT -- count of all CLOSED_LOST Opportunities by product\n" +
+                            "REPORT OPEN BY PRODUCT -- count of all OPEN Opportunities by product\n" +
+                            "===================BY COUNTRY===================\n" +
+                            "REPORT OPPORTUNITY BY COUNTRY -- count of all Opportunities by country\n" +
+                            "REPORT CLOSED-WON BY COUNTRY -- count of all CLOSED_WON Opportunities by country\n" +
+                            "REPORT CLOSED-LOST BY COUNTRY -- count of all CLOSED_LOST Opportunities by country\n" +
+                            "REPORT OPEN BY COUNTRY -- count of all OPEN Opportunities by country\n" +
+                            "===================BY CITY===================\n" +
+                            "REPORT OPPORTUNITY BY CITY -- count of all Opportunities by city\n" +
+                            "REPORT CLOSED-WON BY CITY -- count of all CLOSED_WON Opportunities by city\n" +
+                            "REPORT CLOSED-LOST BY CITY -- count of all CLOSED_LOST Opportunities by city\n" +
+                            "REPORT OPEN BY CITY -- count of all OPEN Opportunities by city\n" +
+                            "===================BY INDUSTRY===================\n" +
+                            "REPORT OPPORTUNITY BY INDUSTRY -- count of all Opportunities by industry\n" +
+                            "REPORT CLOSED-WON BY INDUSTRY -- count of all CLOSED_WON Opportunities by industry\n" +
+                            "REPORT CLOSED-LOST BY INDUSTRY -- count of all CLOSED_LOST Opportunities by industry\n" +
+                            "REPORT OPEN BY INDUSTRY -- count of all OPEN Opportunities by industry\n" +
+                            "===================EMPLOYEECOUNT STATES===================\n" +
+                            "MEAN EMPLOYEECOUNT -- mean employeeCount\n" +
+                            "MEDIAN EMPLOYEECOUNT -- median employeeCount\n" +
+                            "MAX EMPLOYEECOUNT -- maximum employeeCount\n" +
+                            "MIN EMPLOYEECOUNT -- minimum employeeCount\n" +
+                            "===================QUANTITY STATES===================\n" +
+                            "MEAN QUANTITY -- mean quanitity of products order\n" +
+                            "MEDIAN QUANTITY -- median quanitity of products order\n" +
+                            "MAX QUANTITY -- maximum quanitity of products order\n" +
+                            "MIN QUANTITY -- minimum quanitity of products order\n" +
+                            "===================OPPORTUNITY STATES===================\n" +
+                            "MEAN OPPS PER ACCOUNT -- mean number of Opportunities associated with an Account\n" +
+                            "MEDIAN OPPS PER ACCOUNT -- median number of Opportunities associated with an Account\n" +
+                            "MAX OPPS PER ACCOUNT -- maximum number of Opportunities associated with an Account\n" +
+                            "MIN OPPS PER ACCOUNT -- minimum number of Opportunities associated with an Account\n"
+                    );
 
                 } else {
                     System.out.println(ConsoleColors.RED + "COMMAND NOT FOUND");
