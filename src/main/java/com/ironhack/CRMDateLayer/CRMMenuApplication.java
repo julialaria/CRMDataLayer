@@ -162,6 +162,7 @@ public class CRMMenuApplication implements CommandLineRunner {
                 }else if(order.toUpperCase().equals(employeeCountStates[0].toUpperCase())){
                     printResult(opportunityRepository.meanQuantityOfOrders());
                 }else if(order.toUpperCase().equals(employeeCountStates[1].toUpperCase())){
+                    opportunityRepository.setRowIndex();
                     printResult(opportunityRepository.medianQuantityOfOrders());
                 }else if(order.toUpperCase().equals(employeeCountStates[2].toUpperCase())){
                     printResult(opportunityRepository.maxQuantityOfOrders());
@@ -171,6 +172,7 @@ public class CRMMenuApplication implements CommandLineRunner {
                 }else if(order.toUpperCase().equals(quantityStates[0].toUpperCase())){
                     printResult(opportunityRepository.meanQuantityOfOrders());
                 }else if(order.toUpperCase().equals(quantityStates[1].toUpperCase())){
+                    opportunityRepository.setRowIndex();
                     printResult(opportunityRepository.medianQuantityOfOrders());
                 }else if(order.toUpperCase().equals(quantityStates[2].toUpperCase())){
                     printResult(opportunityRepository.maxQuantityOfOrders());
@@ -180,7 +182,8 @@ public class CRMMenuApplication implements CommandLineRunner {
                 }else if(order.toUpperCase().equals(opportunityStates[0].toUpperCase())){
                     printResult(opportunityRepository.averageOpportunitiesInAccount());
                 }else if(order.toUpperCase().equals(opportunityStates[1].toUpperCase())){
-                    //printResult(opportunityRepository.medianQuantityOfOrders());
+                    opportunityRepository.setRowIndex();
+                    printResult(opportunityRepository.medianQuantityOfOrders());
                 }else if(order.toUpperCase().equals(opportunityStates[2].toUpperCase())){
                     printResult(opportunityRepository.maxOpportunitiesInAccount());
                 }else if(order.toUpperCase().equals(opportunityStates[3].toUpperCase())){

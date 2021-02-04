@@ -2,8 +2,10 @@ package com.ironhack.CRMDateLayer.repository;
 
 import com.ironhack.CRMDateLayer.model.Opportunity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -124,16 +126,7 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
     public List<Object[]> meanQuantityOfOrders();
 
     //    The median quantity of products order
-    @Query(value = "SET @rowindex :=-1;" +
-            "SELECT" +
-            "   AVG(quantity) as Median" +
-            "FROM" +
-            "   (SELECT @rowindex:=@rowindex + 1 AS rowindex," +
-            "           quantity AS quantity" +
-            "    FROM opportunity " +
-            "    ORDER BY quantity) AS o" +
-            "WHERE" +
-            "o.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2))", nativeQuery = true)
+    @Query(value = "SELECT AVG(quantity) as Median FROM (SELECT @rowindex\\:=@rowindex + 1 AS rowindex, quantity AS quantity FROM opportunity ORDER BY quantity) AS o WHERE o.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2))", nativeQuery = true)
     public List<Object[]> medianQuantityOfOrders();
 
     //    The maximum quantity of products order
@@ -157,4 +150,8 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
     @Query(value = "Select MIN(counts) from (select COUNT(*) as counts from opportunity GROUP BY account_id) as table1", nativeQuery = true)
     public List<Object[]> minOpportunitiesInAccount();
 
+    @Modifying
+    @Transactional
+    @Query(value = "SET @rowindex \\:=-1;", nativeQuery = true)
+    void setRowIndex();
 }

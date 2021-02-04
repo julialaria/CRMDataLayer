@@ -10,12 +10,7 @@ public class CrmDateLayerApplication {
 
     public static void main(String[] args) {
        // SpringApplication.run(CrmDateLayerApplication.class, args);
-
         ConfigurableApplicationContext context = SpringApplication.run(CrmDateLayerApplication.class);
-
-
-
-
     }
 }
 

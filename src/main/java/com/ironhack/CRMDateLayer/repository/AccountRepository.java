@@ -2,8 +2,10 @@ package com.ironhack.CRMDateLayer.repository;
 
 import com.ironhack.CRMDateLayer.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,16 +22,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     public List<Object[]> meanQuantityOfOrders();
 
     //    The median employeeCount
-    @Query(value = "SET @rowindex := -1" +
-            "SELECT" +
-            "   AVG(employee_count) as Median" +
-            "FROM" +
-            "   (SELECT @rowindex:=@rowindex + 1 AS rowindex," +
-            "           employee_count AS employee_count" +
-            "    FROM account " +
-            "    ORDER BY employee_count) AS o" +
-            "WHERE" +
-            "a.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2))", nativeQuery = true)
+    @Query(value = "SELECT AVG(employee_count) as Median FROM (SELECT @rowindex\\:=@rowindex + 1 AS rowindex, employee_count AS employee_count FROM account  ORDER BY employee_count) AS o WHERE a.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2))", nativeQuery = true)
     public List<Object[]> medianQuantityOfOrders();
 
     //    The maximum employeeCount of products order
@@ -43,5 +36,8 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query(value = "SELECT () FROM account", nativeQuery = true)
     public List<Object[]> meanQuantityOfOpportunities();
 
-
+    @Modifying
+    @Transactional
+    @Query(value = "SET @rowindex \\:=-1;", nativeQuery = true)
+    void setRowIndex();
 }

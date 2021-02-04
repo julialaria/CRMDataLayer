@@ -108,41 +108,40 @@ class OpportunityRepositoryTest {
         assertEquals(response.get(1)[1], new BigInteger("1"));
     }
 
-//    @Test
-//    void countOpportunitiesByCountry() {
-//        List<Object[]> response = opportunityRepository.countOpportunitiesByCountry();
-//        response.forEach(System.out::println);
-//        assertEquals(response.get(0)[0], "EEUU");
-//        assertEquals(response.get(0)[1], new BigInteger("2"));
-//        assertEquals(response.get(1)[0], "Spain");
-//        assertEquals(response.get(1)[1], new BigInteger("2"));
-//    }
+    @Test
+    void countOpportunitiesByCountry() {
+        List<Object[]> response = opportunityRepository.countOpportunitiesByCountry();
+        response.forEach(System.out::println);
+        assertEquals(response.get(0)[0], "EEUU");
+        assertEquals(response.get(0)[1], new BigInteger("2"));
+        assertEquals(response.get(1)[0], "Spain");
+        assertEquals(response.get(1)[1], new BigInteger("2"));
+    }
 
 
     @Test
-    void meanQuantityOfOrders(){
+    void meanQuantityOfOrders() {
         List<Object[]> response = opportunityRepository.meanQuantityOfOrders();
-        assertEquals( response.get(0)[0], 600.00);
+        assertEquals(response.get(0)[0], new BigDecimal("600.0000"));
     }
 
     @Test
-    void medianQuantityOfOrders(){
+    void medianQuantityOfOrders() {
         List<Object[]> response = opportunityRepository.medianQuantityOfOrders();
         assertEquals(response.get(0)[0], 678);
     }
 
     @Test
-    void maxQuantityOfOrders(){
+    void maxQuantityOfOrders() {
         List<Object[]> response = opportunityRepository.maxQuantityOfOrders();
         assertEquals(response.get(0)[0], 986);
     }
 
     @Test
-    void minQuantityOfOrders(){
+    void minQuantityOfOrders() {
         List<Object[]> response = opportunityRepository.minQuantityOfOrders();
         assertEquals(response.get(0)[0], 86);
     }
-
 
 
     @BeforeEach
