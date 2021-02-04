@@ -19,22 +19,20 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     //    The mean employeeCount
     @Query(value = "SELECT AVG(employeeCount) FROM account", nativeQuery = true)
-    public List<Object[]> meanQuantityOfOrders();
+    public List<Object[]> meanEmployeeCount();
 
     //    The median employeeCount
     @Query(value = "SELECT AVG(employee_count) as Median FROM (SELECT @rowindex\\:=@rowindex + 1 AS rowindex, employee_count AS employee_count FROM account  ORDER BY employee_count) AS o WHERE a.rowindex IN (FLOOR(@rowindex / 2), CEIL(@rowindex / 2))", nativeQuery = true)
-    public List<Object[]> medianQuantityOfOrders();
+    public List<Object[]> medianEmployeeCount();
 
     //    The maximum employeeCount of products order
     @Query(value = "SELECT MAX(employeeCount) FROM account", nativeQuery = true)
-    public List<Object[]> maxQuantityOfOrders();
+    public List<Object[]> maxEmployeeCount();
 
     //    The maximum employeeCount of products order
     @Query(value = "SELECT MIN(employeeCount) FROM account", nativeQuery = true)
-    public List<Object[]> minQuantityOfOrders();
+    public List<Object[]> minEmployeeCount();
 
-    @Query(value = "SELECT () FROM account", nativeQuery = true)
-    public List<Object[]> meanQuantityOfOpportunities();
 
     @Modifying
     @Transactional

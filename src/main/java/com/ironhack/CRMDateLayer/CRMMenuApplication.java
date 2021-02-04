@@ -160,14 +160,14 @@ public class CRMMenuApplication implements CommandLineRunner {
                     printResult(opportunityRepository.countOpportunitiesByIndustryOpen());
 
                 }else if(order.toUpperCase().equals(employeeCountStates[0].toUpperCase())){
-                    printResult(opportunityRepository.meanQuantityOfOrders());
+                    printResult(accountRepository.meanEmployeeCount());
                 }else if(order.toUpperCase().equals(employeeCountStates[1].toUpperCase())){
-                    opportunityRepository.setRowIndex();
-                    printResult(opportunityRepository.medianQuantityOfOrders());
+                    accountRepository.setRowIndex();
+                    printResult(accountRepository.medianEmployeeCount());
                 }else if(order.toUpperCase().equals(employeeCountStates[2].toUpperCase())){
-                    printResult(opportunityRepository.maxQuantityOfOrders());
+                    printResult(accountRepository.maxEmployeeCount());
                 }else if(order.toUpperCase().equals(employeeCountStates[3].toUpperCase())){
-                    printResult(opportunityRepository.minQuantityOfOrders());
+                    printResult(accountRepository.minEmployeeCount());
 
                 }else if(order.toUpperCase().equals(quantityStates[0].toUpperCase())){
                     printResult(opportunityRepository.meanQuantityOfOrders());
