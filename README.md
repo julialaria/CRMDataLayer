@@ -107,7 +107,7 @@ In this section you can make a series of queries based on the position of the sa
 
 
 ## Class Diagram:
-![Class Diagram](doc/diagrams/ClassDiagram.jpg)
+![Class Diagram](https://github.com/julialaria/CRMDataLayer/blob/main/doc/diagrams/CRMClassDiagram.jpg?raw=true)
 
 ## Use Case Diagram:
 ![Use Case Diagram](doc/diagrams/UseCaseDiagrams.jpg)
